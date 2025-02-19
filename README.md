@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Lessons:
 
 ## 1. Demo And Installation
@@ -303,3 +304,6 @@
 - [x] Update Order Router
   - [x] Add `/:status?`
   - [x] Add `/allStatus/:id`
+=======
+# Food-store-website
+>>>>>>> 67cb520c43985fbd7ac1da6b35088bd48f88d4ec
