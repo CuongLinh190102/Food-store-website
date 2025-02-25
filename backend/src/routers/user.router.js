@@ -40,7 +40,7 @@ router.post(
       password,
       PASSWORD_HASH_SALT_ROUNDS
     );
-
+// CREATE - Tạo user mới
     const newUser = {
       name,
       email: email.toLowerCase(),
@@ -52,7 +52,7 @@ router.post(
     res.send(generateTokenResponse(result));
   })
 );
-
+// UPDATE - Cập nhật thông tin user
 router.put(
   '/updateProfile',
   auth,
