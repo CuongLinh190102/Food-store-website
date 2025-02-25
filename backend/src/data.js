@@ -65,6 +65,17 @@ export const sample_foods = [
     imageUrl: 'food-6.jpg',
     tags: ['FastFood', 'Pizza', 'Lunch'],
   },
+  {
+    id: '7',
+    name: 'Pho',
+    price: 5,
+    cookTime: '30-50',
+    favorite: false,
+    origins: ['vietnam'],
+    stars: 5.0,
+    imageUrl: 'food-7.jpg',
+    tags: ['Breakfast', 'Lunch'],
+  },
 ];
 
 export const sample_tags = [
