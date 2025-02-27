@@ -9,6 +9,39 @@ import auth from '../middleware/auth.mid.js';
 import admin from '../middleware/admin.mid.js';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 
+/**
+ * @swagger
+ * tags:
+ *  name: Users
+ *  description: User management APIs
+ */
+
+/**
+ * @swagger
+ * /login:
+ *  post:
+ *   summary: Login to the system
+ *   tags: [Users]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        email:
+ *         type: string
+ *         example: "user@example.com"
+ *        password:
+ *         type: string
+ *         example: "123456"
+ *  responses:
+ *   200:
+ *    description: Login successful
+ *   400:
+ *    description: Username or password is invalid
+ */
+
 router.post(
   '/login',
   handler(async (req, res) => {
@@ -23,6 +56,38 @@ router.post(
     res.status(BAD_REQUEST).send('Username or password is invalid');
   })
 );
+
+/**
+ * @swagger
+ * /register:
+ *  post:
+ *   summary: Register a new user
+ *   tags: [Users]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        name:
+ *         type: string
+ *         example: "John Doe"
+ *        email:
+ *         type: string
+ *         example: "john@example.com"
+ *        password:
+ *         type: string
+ *         example: "123456"
+ *        address:
+ *         type: string
+ *         example: "123 Main St, HCM City"
+ *  responses:
+ *   200:
+ *    description: Register successful
+ *   400:
+ *    description: User already exists, please login!
+ */
 
 router.post(
   '/register',
@@ -52,6 +117,35 @@ router.post(
     res.send(generateTokenResponse(result));
   })
 );
+
+/**
+ * @swagger
+ * /updateProfile:
+ *  put:
+ *   summary: Update user profile
+ *   tags: [Users]
+ *   security:
+ *    - bearerAuth: []
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        name:
+ *         type: string
+ *         example: "John Doe"
+ *        address:
+ *         type: string
+ *         example: "123 Main St, HCM City"
+ *  responses:
+ *    200:
+ *     description: Update successful
+ *    400:
+ *     description: Update failed
+ */
+
 // UPDATE - Cập nhật thông tin user
 router.put(
   '/updateProfile',
@@ -67,6 +161,34 @@ router.put(
     res.send(generateTokenResponse(user));
   })
 );
+
+/**
+ * @swagger
+ * /changePassword:
+ *  put:
+ *   summary: Change user password
+ *   tags: [Users]
+ *   security:
+ *    - bearerAuth: []
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        currentPassword:
+ *         type: string
+ *         example: "123456"
+ *        newPassword:
+ *         type: string
+ *         example: "654321"
+ *  responses:
+ *   200:
+ *    description: Change password successful
+ *   400:
+ *    description: Change password failed
+ */
 
 router.put(
   '/changePassword',
@@ -94,6 +216,29 @@ router.put(
   })
 );
 
+/**
+ * @swagger
+ * /getall/{searchTerm}:
+ *  get:
+ *   summary: Get all users (optional search)
+ *   description: Retrieve a list of all users, optionally filtering by search term.
+ *   tags: [Users]
+ *   security:
+ *    - bearerAuth: []
+ *   parameters:
+ *    - name: searchTerm
+ *      in: path
+ *      description: Search users by name (optional)
+ *      required: false
+ *      schema:
+ *       type: string
+ *   responses:
+ *    200:
+ *     description: List of users retrieved successfully
+ *    403:
+ *     description: Unauthorized access
+ */
+
 router.get(
   '/getall/:searchTerm?',
   admin,
@@ -108,6 +253,31 @@ router.get(
     res.send(users);
   })
 );
+
+/**
+ * @swagger
+ * /toggleBlock/{userId}:
+ *   put:
+ *     summary: Toggle user block status
+ *     description: Block or unblock a user account.
+ *     tags: ["Users"]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         required: true
+ *         description: ID of the user to block/unblock
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User block status updated
+ *       400:
+ *         description: Cannot block yourself
+ *       403:
+ *         description: Unauthorized access
+ */
 
 router.put(
   '/toggleBlock/:userId',
@@ -128,6 +298,31 @@ router.put(
   })
 );
 
+/**
+ * @swagger
+ * /getById/{userId}:
+ *   get:
+ *     summary: Get user by ID
+ *     description: Retrieve user details by user ID.
+ *     tags: ["Users"]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         required: true
+ *         description: ID of the user to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User details retrieved successfully
+ *       404:
+ *         description: User not found
+ *       403:
+ *         description: Unauthorized access
+ */
+
 router.get(
   '/getById/:userId',
   admin,
@@ -137,6 +332,47 @@ router.get(
     res.send(user);
   })
 );
+
+/**
+ * @swagger
+ * /update:
+ *   put:
+ *     summary: Update user information
+ *     description: Update name, email, address, and admin status of a user.
+ *     tags: ["Users"]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *                 example: "656fd15d9a8a6b001c8e32ef"
+ *               name:
+ *                 type: string
+ *                 example: "Updated Name"
+ *               email:
+ *                 type: string
+ *                 example: "updated@example.com"
+ *               address:
+ *                 type: string
+ *                 example: "123 Updated Street"
+ *               isAdmin:
+ *                 type: boolean
+ *                 example: false
+ *     responses:
+ *       200:
+ *         description: User information updated
+ *       400:
+ *         description: Invalid request data
+ *       403:
+ *         description: Unauthorized access
+ */
+
 
 router.put(
   '/update',

@@ -5,6 +5,17 @@ import admin from '../middleware/admin.mid.js';
 
 const router = Router();
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Lấy danh sách tất cả món ăn
+ *     tags: [Food]
+ *     responses:
+ *       200:
+ *         description: Trả về danh sách món ăn
+ */
+
 router.get(
   '/',
   handler(async (req, res) => {
@@ -12,6 +23,44 @@ router.get(
     res.send(foods);
   })
 );
+
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Thêm món ăn mới (Admin)
+ *     tags: [Food]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               favorite:
+ *                 type: boolean
+ *               imageUrl:
+ *                 type: string
+ *               origins:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               cookTime:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Món ăn đã được thêm thành công
+ */
 
 router.post(
   '/',
@@ -35,6 +84,46 @@ router.post(
     res.send(food);
   })
 );
+
+/**
+ * @swagger
+ * /:
+ *   put:
+ *     summary: Cập nhật thông tin món ăn (Admin)
+ *     tags: [Food]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               favorite:
+ *                 type: boolean
+ *               imageUrl:
+ *                 type: string
+ *               origins:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               cookTime:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Món ăn đã được cập nhật
+ */
 
 router.put(
   '/',
@@ -60,6 +149,26 @@ router.put(
   })
 );
 
+/**
+ * @swagger
+ * /{foodId}:
+ *   delete:
+ *     summary: Xóa món ăn (Admin)
+ *     tags: [Food]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: foodId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID của món ăn cần xóa
+ *     responses:
+ *       200:
+ *         description: Món ăn đã được xóa
+ */
+
 router.delete(
   '/:foodId',
   admin,
@@ -69,6 +178,17 @@ router.delete(
     res.send();
   })
 );
+
+/**
+ * @swagger
+ * /tags:
+ *   get:
+ *     summary: Lấy danh sách các tag món ăn
+ *     tags: [Food]
+ *     responses:
+ *       200:
+ *         description: Trả về danh sách tag và số lượng món ăn theo tag
+ */
 
 router.get(
   '/tags',
@@ -103,6 +223,24 @@ router.get(
   })
 );
 
+/**
+ * @swagger
+ * /search/{searchTerm}:
+ *   get:
+ *     summary: Tìm kiếm món ăn theo tên
+ *     tags: [Food]
+ *     parameters:
+ *       - in: path
+ *         name: searchTerm
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Từ khóa tìm kiếm
+ *     responses:
+ *       200:
+ *         description: Trả về danh sách món ăn phù hợp
+ */
+
 router.get(
   '/search/:searchTerm',
   handler(async (req, res) => {
@@ -114,6 +252,24 @@ router.get(
   })
 );
 
+/**
+ * @swagger
+ * /tag/{tag}:
+ *   get:
+ *     summary: Lấy danh sách món ăn theo tag
+ *     tags: [Food]
+ *     parameters:
+ *       - in: path
+ *         name: tag
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Tên tag
+ *     responses:
+ *       200:
+ *         description: Trả về danh sách món ăn theo tag
+ */
+
 router.get(
   '/tag/:tag',
   handler(async (req, res) => {
@@ -122,6 +278,24 @@ router.get(
     res.send(foods);
   })
 );
+
+/**
+ * @swagger
+ * /{foodId}:
+ *   get:
+ *     summary: Lấy thông tin chi tiết của một món ăn
+ *     tags: [Food]
+ *     parameters:
+ *       - in: path
+ *         name: foodId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID của món ăn
+ *     responses:
+ *       200:
+ *         description: Trả về thông tin chi tiết món ăn
+ */
 
 router.get(
   '/:foodId',
