@@ -1,0 +1,110 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3vw;
+    max-width: 80vw;
+    margin: auto;
+    margin-bottom: 3vw;
+}
+
+.panel_2col {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+.panel_2col .panel_col_first {
+    width: 634px;
+    margin-right: 30px;
+}
+
+.panel_2col .panel_col_last {
+    width: 300px;
+}
+
+.container h1, h2 {
+    color: #72984c;
+}
+
+.container h1 {
+    font-size: 187.5%;
+    margin: 10px 0;
+    width: 634px;
+}
+
+.container h1 a:link, h1 a:visited {
+    color: #72984c;
+    text-decoration: none;
+}
+
+.container h2 {
+    font-size: 150%;
+    margin: 10px 0;
+    width: 634px;
+    background: transparent url(http://cf.foodista.com/content/fp/6fleckwuxqz4e72e.jpg) repeat-x bottom left;
+}
+
+.container img {
+    width: 70%;
+    height: 70%;
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+}
+
+.container button {
+    position: relative;
+    height: 20px;
+    box-sizing: border-box;
+    padding: 1px 12px 1px 12px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 9999px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.container .ingredients {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .ingredients span {
+    font-size: 100%;
+    margin: 5px 30px;
+}
+
+.container .preparation {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .preparation .steps {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    word-wrap: break-word;
+}
+
+.container .preparation .step_number {
+    color: #72984C;
+    font-size: 125%;
+    float: left;
+    background: transparent url("http://cf.foodista.com/content/fp/cd7nagnzshzgdqhh.jpg") no-repeat bottom left;
+    padding: 5px 14px 5px 1px;
+}
+
+.container .preparation .step_body {
+    float:right;
+    width: 90%;
+    padding-top: 0.45em;
+}
+
+.container .preparation span {
+    font-size: 100%;
+    margin: 5px 30px;
+}
+  

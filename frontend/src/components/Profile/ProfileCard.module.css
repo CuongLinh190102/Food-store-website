@@ -1,0 +1,66 @@
+.container {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    transition: 0.4s;
+}
+
+.container:hover {
+    border-radius: 20px;
+    height: 320px;
+}
+
+.container img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    z-index: 2;
+    transition: 0.4s;
+}
+
+.container:hover img {
+    border-radius: 20px;
+    margin-top: -230px;
+}
+
+.container .info {
+    position: absolute;
+    text-align: center;
+    top: 25%;
+    transition: 0.4s;
+}
+
+.container:hover .info {
+    top: 60%;
+}
+
+.container .info .name {
+    color: #fac031;
+    margin-bottom: 15px;
+}
+
+.container .info .bio {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto 10px auto;
+}
+
+.container .info .icon i {
+    margin: 10px 5px 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.container .info .icon i:hover {
+    color: #fac031;
+}

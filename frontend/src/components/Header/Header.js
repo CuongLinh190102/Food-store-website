@@ -11,28 +11,44 @@ export default function Header() {
 
   return (
     <header className={classes.header}>
-      <div className={classes.container}>
-        <Link to="/" className={classes.logo}>
-          Food Mine!
-        </Link>
-        <nav>
+      <nav>
+          <Link to="/" className={classes.logo}>
+            <img src="/icons/logo.png" alt="logo" />
+          </Link>
+          <ul>
+            <li>
+              <Link to="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/news">
+                News
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact">
+                Contact
+              </Link>
+            </li>
+          </ul>
           <ul>
             {user ? (
-              <li className={classes.menu_container}>
+              <li className={classes.submenu_container}>
                 <Link to="/dashboard">{user.name}</Link>
-                <div className={classes.menu}>
+                <div className={classes.submenu}>
                   <Link to="/profile">Profile</Link>
                   <Link to="/orders">Orders</Link>
                   <a onClick={logout}>Logout</a>
                 </div>
               </li>
             ) : (
-              <Link to="/login">Login</Link>
+              <li><Link to="/login">Login</Link></li>
             )}
 
             <li>
               <Link to="/cart">
-                Cart
+                <i className='fa-solid fa-cart-shopping'></i>
                 {cart.totalCount > 0 && (
                   <span className={classes.cart_count}>{cart.totalCount}</span>
                 )}
@@ -40,7 +56,6 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-      </div>
     </header>
   );
 }
