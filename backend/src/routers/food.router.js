@@ -7,13 +7,13 @@ const router = Router();
 
 /**
  * @swagger
- * /:
+ * /api/foods/:
  *   get:
- *     summary: Lấy danh sách tất cả món ăn
+ *     summary: Get list of all foods
  *     tags: [Food]
  *     responses:
  *       200:
- *         description: Trả về danh sách món ăn
+ *         description: Returns the list of foods
  */
 
 router.get(
@@ -26,9 +26,9 @@ router.get(
 
 /**
  * @swagger
- * /:
+ * /api/foods/:
  *   post:
- *     summary: Thêm món ăn mới (Admin)
+ *     summary: Add new food (Admin)
  *     tags: [Food]
  *     security:
  *       - BearerAuth: []
@@ -59,7 +59,7 @@ router.get(
  *                 type: string
  *     responses:
  *       201:
- *         description: Món ăn đã được thêm thành công
+ *         description: The food has been successfully added.
  */
 
 router.post(
@@ -87,9 +87,9 @@ router.post(
 
 /**
  * @swagger
- * /:
+ * /api/foods/:
  *   put:
- *     summary: Cập nhật thông tin món ăn (Admin)
+ *     summary: Update food information (Admin)
  *     tags: [Food]
  *     security:
  *       - BearerAuth: []
@@ -122,7 +122,7 @@ router.post(
  *                 type: string
  *     responses:
  *       200:
- *         description: Món ăn đã được cập nhật
+ *         description: The food has been updated
  */
 
 router.put(
@@ -151,9 +151,9 @@ router.put(
 
 /**
  * @swagger
- * /{foodId}:
+ * /api/foods/{foodId}:
  *   delete:
- *     summary: Xóa món ăn (Admin)
+ *     summary: Delete food (Admin)
  *     tags: [Food]
  *     security:
  *       - BearerAuth: []
@@ -163,10 +163,10 @@ router.put(
  *         required: true
  *         schema:
  *           type: string
- *         description: ID của món ăn cần xóa
+ *         description: ID of the food to delete
  *     responses:
  *       200:
- *         description: Món ăn đã được xóa
+ *         description: The food has been deleted
  */
 
 router.delete(
@@ -181,13 +181,13 @@ router.delete(
 
 /**
  * @swagger
- * /tags:
+ * /api/foods/tags:
  *   get:
- *     summary: Lấy danh sách các tag món ăn
+ *     summary: Get list of food tags
  *     tags: [Food]
  *     responses:
  *       200:
- *         description: Trả về danh sách tag và số lượng món ăn theo tag
+ *         description: Returns a list of tags and the number of foods by tag
  */
 
 router.get(
@@ -225,9 +225,9 @@ router.get(
 
 /**
  * @swagger
- * /search/{searchTerm}:
+ * /api/foods/search/{searchTerm}:
  *   get:
- *     summary: Tìm kiếm món ăn theo tên
+ *     summary: Search for foods by name
  *     tags: [Food]
  *     parameters:
  *       - in: path
@@ -235,10 +235,10 @@ router.get(
  *         required: true
  *         schema:
  *           type: string
- *         description: Từ khóa tìm kiếm
+ *         description: Search keywords
  *     responses:
  *       200:
- *         description: Trả về danh sách món ăn phù hợp
+ *         description: Returns a list of matching foods
  */
 
 router.get(
@@ -254,9 +254,9 @@ router.get(
 
 /**
  * @swagger
- * /tag/{tag}:
+ * /api/foods/tag/{tag}:
  *   get:
- *     summary: Lấy danh sách món ăn theo tag
+ *     summary: Get list of foods by tag
  *     tags: [Food]
  *     parameters:
  *       - in: path
@@ -264,10 +264,10 @@ router.get(
  *         required: true
  *         schema:
  *           type: string
- *         description: Tên tag
+ *         description: Tag name
  *     responses:
  *       200:
- *         description: Trả về danh sách món ăn theo tag
+ *         description: Returns a list of foods by tag
  */
 
 router.get(
@@ -281,9 +281,9 @@ router.get(
 
 /**
  * @swagger
- * /{foodId}:
+ * /api/foods/{foodId}:
  *   get:
- *     summary: Lấy thông tin chi tiết của một món ăn
+ *     summary: Get details of a food
  *     tags: [Food]
  *     parameters:
  *       - in: path
@@ -291,10 +291,10 @@ router.get(
  *         required: true
  *         schema:
  *           type: string
- *         description: ID của món ăn
+ *         description: ID of the food
  *     responses:
  *       200:
- *         description: Trả về thông tin chi tiết món ăn
+ *         description: Returns food details
  */
 
 router.get(

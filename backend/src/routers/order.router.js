@@ -19,7 +19,7 @@ router.use(auth);
 
 /**
  * @swagger
- * /create:
+ * /api/orders/create:
  *   post:
  *     summary: "Create a new order"
  *     tags: [Order]
@@ -36,13 +36,22 @@ router.use(auth);
  *                 type: array
  *                 items:
  *                   type: object
+ *                   properties:
+ *                    productId:
+ *                     type: string
+ *                   quantity:
+ *                    type: number
  *             example:
- *               items: [{ "productId": "123", "quantity": 2 }]
+ *               items: [{ "productId": "67bdb5feeadd4e1ba0e4e342", "quantity": 2 }]
  *     responses:
  *       200:
  *         description: "Order created successfully"
  *       400:
  *         description: "Cart is empty"
+ *       401:
+ *         description: "Unauthorized"
+ *       500:
+ *         description: "Internal server error"
  */
 
 router.post(
@@ -50,7 +59,8 @@ router.post(
   handler(async (req, res) => {
     const order = req.body;
 
-    if (order.items.length <= 0) res.status(BAD_REQUEST).send('Cart Is Empty!');
+    if (!order.items || order.items.length <= 0) 
+      return res.status(BAD_REQUEST).send('Cart Is Empty!');
 
     await OrderModel.deleteOne({
       user: req.user.id,
@@ -59,13 +69,14 @@ router.post(
 
     const newOrder = new OrderModel({ ...order, user: req.user.id });
     await newOrder.save();
-    res.send(newOrder);
+
+    res.status(200).send(newOrder);
   })
 );
 
 /**
  * @swagger
- * /pay:
+ * /api/orders/pay:
  *   put:
  *     summary: "Pay for an order"
  *     tags: [Order]
@@ -111,7 +122,7 @@ router.put(
 
 /**
  * @swagger
- * /track/{orderId}:
+ * /api/orders/track/{orderId}:
  *   get:
  *     summary: "Track an order by ID"
  *     tags: [Order]
@@ -155,7 +166,7 @@ router.get(
 
 /**
  * @swagger
- * /newOrderForCurrentUser:
+ * /api/orders/newOrderForCurrentUser:
  *   get:
  *     summary: "Get the latest order for the current user"
  *     tags: [Order]
@@ -179,7 +190,7 @@ router.get(
 
 /**
  * @swagger
- * /allstatus:
+ * /api/orders/allstatus:
  *   get:
  *     summary: "Get all possible order statuses"
  *     tags: [Order]
@@ -195,7 +206,7 @@ router.get('/allstatus', (req, res) => {
 
 /**
  * @swagger
- * /{status}:
+ * /api/orders/{status}:
  *   get:
  *     summary: "Get orders by status"
  *     tags: [Order]

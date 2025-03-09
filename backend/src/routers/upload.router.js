@@ -17,7 +17,7 @@ const upload = multer();
 
 /**
  * @swagger
- * /upload:
+ * /api/upload/:
  *   post:
  *     summary: Upload image to Cloudinary
  *     description: Upload an image file and get its Cloudinary URL.

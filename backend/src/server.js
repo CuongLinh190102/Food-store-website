@@ -33,7 +33,7 @@ app.use('/api/upload', uploadRouter);
 // Setup Swagger
 app.use(swaggerRoutes);
 
-const publicFolder = path.join(__dirname, 'public');
+const publicFolder = path.join(__dirname, '../../frontend/public');
 app.use(express.static(publicFolder));
 
 app.get('*', (req, res) => {

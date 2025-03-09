@@ -18,7 +18,7 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
 
 /**
  * @swagger
- * /login:
+ * /api/users/login:
  *  post:
  *   summary: Login to the system
  *   tags: [Users]
@@ -59,7 +59,7 @@ router.post(
 
 /**
  * @swagger
- * /register:
+ * /api/users/register:
  *  post:
  *   summary: Register a new user
  *   tags: [Users]
@@ -120,7 +120,7 @@ router.post(
 
 /**
  * @swagger
- * /updateProfile:
+ * /api/users/updateProfile:
  *  put:
  *   summary: Update user profile
  *   tags: [Users]
@@ -164,7 +164,7 @@ router.put(
 
 /**
  * @swagger
- * /changePassword:
+ * /api/users/changePassword:
  *  put:
  *   summary: Change user password
  *   tags: [Users]
@@ -218,7 +218,7 @@ router.put(
 
 /**
  * @swagger
- * /getall/{searchTerm}:
+ * /api/users/getall/{searchTerm}:
  *  get:
  *   summary: Get all users (optional search)
  *   description: Retrieve a list of all users, optionally filtering by search term.
@@ -256,7 +256,7 @@ router.get(
 
 /**
  * @swagger
- * /toggleBlock/{userId}:
+ * /api/users/toggleBlock/{userId}:
  *   put:
  *     summary: Toggle user block status
  *     description: Block or unblock a user account.
@@ -300,7 +300,7 @@ router.put(
 
 /**
  * @swagger
- * /getById/{userId}:
+ * /api/users/getById/{userId}:
  *   get:
  *     summary: Get user by ID
  *     description: Retrieve user details by user ID.
@@ -335,7 +335,7 @@ router.get(
 
 /**
  * @swagger
- * /update:
+ * /api/users/update:
  *   put:
  *     summary: Update user information
  *     description: Update name, email, address, and admin status of a user.
