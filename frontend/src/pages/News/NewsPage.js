@@ -8,9 +8,10 @@ function NewsPage() {
     async function getRandomNew() {
         try{
             const apiKey = 'be49521b7de44426aa3df1a717bf2e94';
-            
             let n = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`);
-
+            
+            console.log(n.data);
+            
             setNews(n.data.recipes[0]);
         } catch (e) {
             console.log(e);

@@ -39,11 +39,6 @@
   margin: 0;
 }
 
-.header nav ul li {
-  display: inline-block;
-  margin: 0 15px;
-}
-
 .header nav ul li a {
   text-decoration: none;
   padding: 1rem;
@@ -79,18 +74,30 @@
 
 .submenu {
   position: absolute;
+  top: 100%;
+  left: 0;
   z-index: 1001;
   background-color: whitesmoke;
   display: none;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.submenu_container:hover .menu {
+.submenu_container:hover .submenu {
   display: block;
 }
 
 .submenu a {
-  width: 100%;
-  min-width: 8rem;
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.submenu a:hover {
+  background-color: #e72929;
+  color: white;
 }
 
 .cart_count {

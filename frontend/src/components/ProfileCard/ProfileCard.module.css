@@ -45,14 +45,19 @@
 }
 
 .container .info .name {
-    color: #fac031;
-    margin-bottom: 15px;
+    color: #e72929;
+    margin-bottom: 10px;
 }
 
 .container .info .bio {
     width: 70%;
     text-align: center;
-    margin: 0 auto 10px auto;
+    margin: 0 auto 5px auto;
+}
+
+.container .info .icon a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .container .info .icon i {
@@ -62,5 +67,5 @@
 }
 
 .container .info .icon i:hover {
-    color: #fac031;
+    color: #e72929;
 }

@@ -11,9 +11,9 @@ function ProfileCard(
                 <p className={classes.bio}>{bio}</p>
 
                 <div className={classes.icon}>
-                    <i className='fa-brands fa-facebook-f'></i>
-                    <i className='fa-brands fa-twitter'></i>
-                    <i className='fa-brands fa-instagram'></i>
+                    <a href='https://www.facebook.com/'><i className='fa-brands fa-facebook-f'></i></a>
+                    <a href='x.com'><i className='fa-brands fa-twitter'></i></a>
+                    <a href='instagram.com'><i className='fa-brands fa-instagram'></i></a>
                 </div>
             </div>
         </div>

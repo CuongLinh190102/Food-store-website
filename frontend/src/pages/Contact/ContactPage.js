@@ -1,5 +1,5 @@
 import classes from './ContactPage.module.css';
-import ProfileCard from '../../components/Profile/ProfileCard';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 function ContactPage () {
   return (
