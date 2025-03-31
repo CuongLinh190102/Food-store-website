@@ -7,11 +7,19 @@ import { useCart } from '../../hooks/useCart';
 import { getById } from '../../services/foodService';
 import classes from './foodPage.module.css';
 import NotFound from '../../components/NotFound/NotFound';
+import { useAuth } from '../../hooks/useAuth';
+import { 
+  addFavorite, 
+  removeFavorite 
+} from '../../services/favoriteService';
+
 export default function FoodPage() {
   const [food, setFood] = useState({});
   const { id } = useParams();
   const { addToCart } = useCart();
   const navigate = useNavigate();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { user } = useAuth();
 
   const handleAddToCart = () => {
     addToCart(food);
@@ -21,6 +29,21 @@ export default function FoodPage() {
   useEffect(() => {
     getById(id).then(setFood);
   }, [id]);
+
+  const toggleFavorite = async () => {
+    if (!user) return;
+    try {
+      if (isFavorite) {
+        await removeFavorite(food.id);
+      } else {
+        await addFavorite(food.id);
+      }
+      setIsFavorite(!isFavorite);
+    } catch (err) {
+      console.error('Failed to toggle favorite:', err);
+    }
+  };
+
   return (
     <>
       {!food ? (
@@ -37,8 +60,9 @@ export default function FoodPage() {
             <div className={classes.header}>
               <span className={classes.name}>{food.name}</span>
               <span
+                onClick={toggleFavorite}
                 className={`${classes.favorite} ${
-                  food.favorite ? '' : classes.not
+                  isFavorite ? '' : classes.not
                 }`}
               >
                 ❤

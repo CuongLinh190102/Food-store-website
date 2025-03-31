@@ -9,6 +9,7 @@ import foodRouter from './routers/food.router.js';
 import userRouter from './routers/user.router.js';
 import orderRouter from './routers/order.router.js';
 import uploadRouter from './routers/upload.router.js';
+import favoriteRouter from './routers/favorite.router.js';
 import swaggerRoutes from './swagger.js';
 
 // Kết nối cơ sở dữ liệu
@@ -39,6 +40,7 @@ app.use('/api/foods', foodRouter); // API quản lý thực phẩm
 app.use('/api/users', userRouter); // API quản lý người dùng
 app.use('/api/orders', orderRouter); // API quản lý đơn hàng
 app.use('/api/upload', uploadRouter); // API xử lý upload file
+app.use('/api/favorites', favoriteRouter); // API quản lý món ăn yêu thích
 
 // SPOONACULAR
 const recipeIds = [715497, 716429, 644387, 715415, 715538];
