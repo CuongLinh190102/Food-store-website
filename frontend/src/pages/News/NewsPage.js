@@ -1,69 +1,38 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import classes from './NewsPage.module.css';
 
 function NewsPage() {
-    const [news, setNews] = useState();
+    const [recipes, setRecipes] = useState([]); 
+    const navigate = useNavigate();
 
-    async function getRandomNew() {
-        try{
-            const apiKey = 'be49521b7de44426aa3df1a717bf2e94';
-            let n = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`);
-            
-            console.log(n.data);
-            
-            setNews(n.data.recipes[0]);
+    async function getRecipes() {
+        try {
+            let response = await axios.get(`http://localhost:5000/api/recipes`);
+            setRecipes(response.data.recipes);
         } catch (e) {
             console.log(e);
         }
     }
 
     useEffect(() => {
-        getRandomNew();
+        getRecipes();
     }, []);
 
     return (
         <div className={classes.container}>
-            <div className={classes.panel_2col}>
-                <div className={classes.panel_col_first}>
-                    <h1>
-                        Name:
-                        <a target="_blank" rel='noreferrer' href={news?.sourceUrl}> {news?.title}</a>
-                    </h1>
-                    <img src={news?.image} alt={news?.title} />
-                </div>
-                <div className={classes.panel_col_last}>
-                    <button onClick={getRandomNew}>Get Random Recipe News</button>
-                </div>
-            </div>
-            
-            <div className={classes.ingredients}>
-                <h2> Ingredients needed:</h2>
-                {news?.extendedIngredients.map((ingredient, index) => 
-                    <span key={index}>
-                        {index !== news?.extendedIngredients.length - 1 ? ingredient.original + ', ' : ingredient.original}
-                    </span>
-                )}
-            </div>
-            <div className={classes.preparation}>
-                <h2>Preparation</h2>
-                {news?.analyzedInstructions.map((instruction) =>
-                    <div className={classes.steps}>
-                        {instruction.steps.map((step, index) =>
-                            <div>
-                                <div className={classes.step_number} key={index}>
-                                    {step.number}. 
-                                </div>
-                                <div className={classes.step_body}>
-                                {step.step}
-                                </div>
-                            </div>
-                        )}
+            <h1>List of Recipes</h1>
+            <div className={classes.recipe_list}>
+                {recipes.map((recipe) => (
+                    <div key={recipe.id} className={classes.card} onClick={() => navigate(`/news/${recipe.id}`)}>
+                        <img src={recipe.image} alt={recipe.title} />
+                        <h2>{recipe.title}</h2>
                     </div>
-                )}
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
 export default NewsPage;

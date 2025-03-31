@@ -31,6 +31,43 @@ app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/upload', uploadRouter);
 
+// SPOONACULAR
+const recipeIds = [715497, 716429, 644387, 715415, 715538];
+
+app.get('/api/recipes', async (req, res) => {
+  try {
+    const apiKey = process.env.SPOONACULAR_API_KEY;
+    const recipes = [];
+
+    // Gửi request lấy thông tin từng công thức dựa trên ID
+    for (const id of recipeIds) {
+      const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`);
+      const data = await response.json();
+      recipes.push(data);
+    }
+
+    res.json({ recipes });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API lấy chi tiết công thức theo ID
+app.get('/api/recipes/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const apiKey = process.env.SPOONACULAR_API_KEY;
+
+    const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`);
+    const data = await response.json();
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 // Setup Swagger
 app.use(swaggerRoutes);
 
@@ -41,6 +78,7 @@ app.get('*', (req, res) => {
   const indexFilePath = path.join(publicFolder, 'index.html');
   res.sendFile(indexFilePath);
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
