@@ -18,6 +18,7 @@ import FoodEditPage from './pages/FoodEdit/FoodEditPage';
 import UsersPage from './pages/UsersPage/UsersPage';
 import UserEditPage from './pages/UserEdit/UserEditPage';
 import NewsPage from './pages/News/NewsPage';
+import NewsDetail from './pages/NewsDetail/NewsDetail';
 import ContactPage from './pages/Contact/ContactPage';
 
 export default function AppRoutes() {
@@ -25,6 +26,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/news" element={<NewsPage />} />
+      <Route path='/news/:id' element={<NewsDetail />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/search/:searchTerm" element={<HomePage />} />
       <Route path="/tag/:tag" element={<HomePage />} />
