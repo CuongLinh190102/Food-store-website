@@ -218,7 +218,7 @@ router.put(
 
 /**
  * @swagger
- * /api/users/getall/{searchTerm}
+ * /api/users/getall/{searchTerm}:
  *  get:
  *   summary: Get all users (optional search)
  *   description: Retrieve a list of all users, optionally filtering by search term.
@@ -256,7 +256,7 @@ router.get(
 
 /**
  * @swagger
- * /api/users/toggleBlock/:{userId}
+ * /api/users/toggleBlock/{userId}:
  *   put:
  *     summary: Toggle user block status
  *     description: Block or unblock a user account.
