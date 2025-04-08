@@ -74,32 +74,7 @@ router.post(
   })
 );
 
-/**
- * @swagger
- * /api/orders/pay:
- *   put:
- *     summary: "Pay for an order"
- *     tags: [Order]
- *     security:
- *       - BearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               paymentId:
- *                 type: string
- *             example:
- *               paymentId: "pay_12345"
- *     responses:
- *       200:
- *         description: "Payment successful"
- *       400:
- *         description: "Order not found"
- */
-
+// paymentId do bên Paypal cung cấp nên khó test API bằng Postman
 router.put(
   '/pay',
   handler(async (req, res) => {

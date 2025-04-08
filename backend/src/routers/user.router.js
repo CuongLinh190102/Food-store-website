@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 const router = Router();
-import { OK, BAD_REQUEST } from '../constants/httpStatus.js';
+import { BAD_REQUEST } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
@@ -49,7 +49,7 @@ router.post(
     const user = await UserModel.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      res.status(OK).send(generateTokenResponse(user));
+      res.send(generateTokenResponse(user));
       return;
     }
 
@@ -150,7 +150,7 @@ router.post(
     };
 
     const result = await UserModel.create(newUser);
-    res.status(OK).json(generateTokenResponse(result));
+    res.json(generateTokenResponse(result));
   })
 );
 

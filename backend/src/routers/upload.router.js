@@ -8,50 +8,7 @@ import { configCloudinary } from '../config/cloudinary.config.js';
 const router = Router();
 const upload = multer();
 
-/**
- * @swagger
- * tags:
- *   - name: "Upload"
- *     description: "APIs for uploading files"
- */
-
-/**
- * @swagger
- * /api/upload/:
- *   post:
- *     summary: Upload image to Cloudinary
- *     description: Upload an image file and get its Cloudinary URL.
- *     tags: ["Upload"]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               image:
- *                 type: string
- *                 format: binary
- *                 description: Image file to upload
- *     responses:
- *       200:
- *         description: Image uploaded successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 imageUrl:
- *                   type: string
- *                   example: "https://res.cloudinary.com/demo/image/upload/sample.jpg"
- *       400:
- *         description: No image file provided
- *       403:
- *         description: Unauthorized access
- */
-
+// ảnh lấy ngẫu nhiên, không test API bằng Postman được
 router.post(
   '/',
   admin,
