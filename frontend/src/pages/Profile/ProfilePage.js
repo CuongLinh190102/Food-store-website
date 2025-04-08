@@ -31,7 +31,7 @@ export default function ProfilePage() {
             label="Name"
             {...register('name', {
               required: true,
-              minLength: 5,
+              minLength: 1,
             })}
             error={errors.name}
           />
@@ -41,7 +41,7 @@ export default function ProfilePage() {
             label="Address"
             {...register('address', {
               required: true,
-              minLength: 10,
+              minLength: 1,
             })}
             error={errors.address}
           />

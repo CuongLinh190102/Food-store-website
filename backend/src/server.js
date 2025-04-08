@@ -34,6 +34,7 @@ app.use(
     optionsSuccessStatus: 200
   })
 );
+app.use(express.json());
 
 // Định nghĩa các route API
 app.use('/api/foods', foodRouter); // API quản lý thực phẩm

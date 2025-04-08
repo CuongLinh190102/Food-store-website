@@ -6,7 +6,6 @@ import { useAuth } from '../../hooks/useAuth';
 
 export default function Header() {
   const { user, logout } = useAuth();
-
   const { cart } = useCart();
 
   return (

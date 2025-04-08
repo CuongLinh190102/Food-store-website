@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 const router = Router();
-import { BAD_REQUEST } from '../constants/httpStatus.js';
+import { OK, BAD_REQUEST } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
@@ -31,7 +31,7 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
  *       properties:
  *        email:
  *         type: string
- *         example: "user@example.com"
+ *         example: "jane@gmail.com"
  *        password:
  *         type: string
  *         example: "123456"
@@ -49,7 +49,7 @@ router.post(
     const user = await UserModel.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      res.send(generateTokenResponse(user));
+      res.status(OK).send(generateTokenResponse(user));
       return;
     }
 
@@ -69,24 +69,60 @@ router.post(
  *     application/json:
  *      schema:
  *       type: object
+ *       required:
+ *        - name
+ *        - email
+ *        - password
+ *        - address
  *       properties:
  *        name:
  *         type: string
- *         example: "John Doe"
+ *         example: "DP"
  *        email:
  *         type: string
- *         example: "john@example.com"
+ *         example: "DP@gmail.com"
  *        password:
  *         type: string
  *         example: "123456"
  *        address:
  *         type: string
- *         example: "123 Main St, HCM City"
+ *         example: "Vietnam"
  *  responses:
  *   200:
  *    description: Register successful
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        id:
+ *         type: string
+ *         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+ *        name:
+ *         type: string
+ *         example: "DP"
+ *        email:
+ *         type: string
+ *         example: "dp@gmail.com"
+ *        address:
+ *         type: string
+ *         example: "Vietnam"
+ *        isAdmin:
+ *         type: boolean
+ *         example: false
+ *        token:
+ *         type: string
+ *         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
  *   400:
  *    description: User already exists, please login!
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        message:
+ *         type: string
+ *         example: "User already exists, please login!"
  */
 
 router.post(
@@ -97,7 +133,7 @@ router.post(
     const user = await UserModel.findOne({ email });
 
     if (user) {
-      res.status(BAD_REQUEST).send('User already exists, please login!');
+      res.status(BAD_REQUEST).json('User already exists, please login!');
       return;
     }
 
@@ -114,7 +150,7 @@ router.post(
     };
 
     const result = await UserModel.create(newUser);
-    res.send(generateTokenResponse(result));
+    res.status(OK).json(generateTokenResponse(result));
   })
 );
 

@@ -23,6 +23,8 @@ const swaggerOptions = {
                 },
             },
         },
+        produces: ['application/json'],
+        consumes: ['application/json'],
         security: [{ bearerAuth: [] }],
     },
     apis: ['./src/routers/*.js'],
