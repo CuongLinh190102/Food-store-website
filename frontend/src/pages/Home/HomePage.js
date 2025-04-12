@@ -10,6 +10,7 @@ import {
   search,
 } from '../../services/foodService';
 import NotFound from '../../components/NotFound/NotFound';
+import classes from './HomePage.module.css';
 
 const initialState = { foods: [], tags: [] };
 
@@ -43,10 +44,12 @@ export default function HomePage() {
 
   return (
     <>
-      <Search />
-      <Tags tags={tags} />
-      {foods.length === 0 && <NotFound linkText="Reset Search" />}
-      <Thumbnails foods={foods} />
+      <div className={classes.container}>
+        <Search />
+        <Tags tags={tags} />
+        {foods.length === 0 && <NotFound linkText="Reset Search" />}
+        <Thumbnails foods={foods} />
+      </div>
     </>
   );
 }

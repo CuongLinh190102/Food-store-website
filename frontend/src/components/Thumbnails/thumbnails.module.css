@@ -17,6 +17,7 @@
   flex-direction: column;
   overflow: hidden;
   color: #e72929;
+  background-color: white;
 }
 
 .image {
