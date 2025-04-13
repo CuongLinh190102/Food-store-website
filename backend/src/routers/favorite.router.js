@@ -11,7 +11,6 @@ router.get(
   '/',
   auth,
   handler(async (req, res) => {
-    console.log(req.user);
     const favorites = await FavoriteModel.find({ userId: req.user.id }).exec();
       res.send(favorites.map(fav => ({ id: fav.foodId })));; // Trả về danh sách id
   })
