@@ -1,7 +1,9 @@
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
+import dotenv from 'dotenv';
 import express from 'express';
 
+dotenv.config();
 const router = express.Router();
 
 // Cấu hình Swagger options
@@ -12,8 +14,12 @@ const swaggerOptions = {
             title: 'Food App API',
             version: '1.0.0',
             description: 'API documentation for Food Store website',
-            servers: ['http://localhost:5000'],
         },
+        servers: [
+            {
+                url: `http://localhost:${process.env.PORT || 5000}`,
+            },
+        ],
         components: {
             securitySchemes: {
                 bearerAuth: {
@@ -23,8 +29,6 @@ const swaggerOptions = {
                 },
             },
         },
-        produces: ['application/json'],
-        consumes: ['application/json'],
         security: [{ bearerAuth: [] }],
     },
     apis: ['./src/routers/*.js'],

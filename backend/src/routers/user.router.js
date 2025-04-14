@@ -18,47 +18,6 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
 
 /**
  * @swagger
- * /api/users/login:
- *  post:
- *   summary: Login to the system
- *   tags: [Users]
- *   requestBody:
- *    required: true
- *    content:
- *     application/json:
- *      schema:
- *       type: object
- *       properties:
- *        email:
- *         type: string
- *         example: "jane@gmail.com"
- *        password:
- *         type: string
- *         example: "123456"
- *  responses:
- *   200:
- *    description: Login successful
- *   400:
- *    description: Username or password is invalid
- */
-
-router.post(
-  '/login',
-  handler(async (req, res) => {
-    const { email, password } = req.body;
-    const user = await UserModel.findOne({ email });
-
-    if (user && (await bcrypt.compare(password, user.password))) {
-      res.send(generateTokenResponse(user));
-      return;
-    }
-
-    res.status(BAD_REQUEST).send('Username or password is invalid');
-  })
-);
-
-/**
- * @swagger
  * /api/users/register:
  *  post:
  *   summary: Register a new user
@@ -77,52 +36,21 @@ router.post(
  *       properties:
  *        name:
  *         type: string
- *         example: "DP"
+ *         example: "DPT"
  *        email:
  *         type: string
- *         example: "DP@gmail.com"
+ *         example: "dpt@gmail.com"
  *        password:
  *         type: string
  *         example: "123456"
  *        address:
  *         type: string
  *         example: "Vietnam"
- *  responses:
- *   200:
- *    description: Register successful
- *    content:
- *     application/json:
- *      schema:
- *       type: object
- *       properties:
- *        id:
- *         type: string
- *         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
- *        name:
- *         type: string
- *         example: "DP"
- *        email:
- *         type: string
- *         example: "dp@gmail.com"
- *        address:
- *         type: string
- *         example: "Vietnam"
- *        isAdmin:
- *         type: boolean
- *         example: false
- *        token:
- *         type: string
- *         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
- *   400:
- *    description: User already exists, please login!
- *    content:
- *     application/json:
- *      schema:
- *       type: object
- *       properties:
- *        message:
- *         type: string
- *         example: "User already exists, please login!"
+ *   responses:
+ *    200:
+ *     description: Register successful
+ *    400:
+ *     description: User already exists, please login!
  */
 
 router.post(
@@ -156,6 +84,47 @@ router.post(
 
 /**
  * @swagger
+ * /api/users/login:
+ *  post:
+ *   summary: Login to the system
+ *   tags: [Users]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        email:
+ *         type: string
+ *         example: "dpt@gmail.com"
+ *        password:
+ *         type: string
+ *         example: "123456"
+ *   responses:
+ *    200:
+ *     description: Login successful
+ *    400:
+ *     description: Username or password is invalid
+ */
+
+router.post(
+  '/login',
+  handler(async (req, res) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.send(generateTokenResponse(user));
+      return;
+    }
+
+    res.status(BAD_REQUEST).send('Username or password is invalid');
+  })
+);
+
+/**
+ * @swagger
  * /api/users/updateProfile:
  *  put:
  *   summary: Update user profile
@@ -171,11 +140,11 @@ router.post(
  *       properties:
  *        name:
  *         type: string
- *         example: "John Doe"
+ *         example: "DPTU"
  *        address:
  *         type: string
- *         example: "123 Main St, HCM City"
- *  responses:
+ *         example: "Vietnam"
+ *   responses:
  *    200:
  *     description: Update successful
  *    400:
@@ -219,11 +188,11 @@ router.put(
  *        newPassword:
  *         type: string
  *         example: "654321"
- *  responses:
- *   200:
- *    description: Change password successful
- *   400:
- *    description: Change password failed
+ *   responses:
+ *    200:
+ *     description: Change password successful
+ *    400:
+ *     description: Change password failed
  */
 
 router.put(
@@ -268,11 +237,11 @@ router.put(
  *      required: false
  *      schema:
  *       type: string
- *   responses:
- *    200:
- *     description: List of users retrieved successfully
- *    403:
- *     description: Unauthorized access
+ *    responses:
+ *     200:
+ *      description: List of users retrieved successfully
+ *     403:
+ *      description: Unauthorized access
  */
 
 router.get(
@@ -390,17 +359,17 @@ router.get(
  *                 example: "656fd15d9a8a6b001c8e32ef"
  *               name:
  *                 type: string
- *                 example: "Updated Name"
+ *                 example: "DPT"
  *               email:
  *                 type: string
- *                 example: "updated@example.com"
+ *                 example: "dpt@gmail.com"
  *               address:
  *                 type: string
- *                 example: "123 Updated Street"
+ *                 example: "Vietnam"
  *               isAdmin:
  *                 type: boolean
- *                 example: false
- *     responses:
+ *                 example: true
+ *      responses:
  *       200:
  *         description: User information updated
  *       400:

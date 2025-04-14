@@ -38,8 +38,8 @@ app.use(
 app.use(express.json());
 
 // Định nghĩa các route API
-app.use('/api/foods', foodRouter); // API quản lý thực phẩm
 app.use('/api/users', userRouter); // API quản lý người dùng
+app.use('/api/foods', foodRouter); // API quản lý thực phẩm
 app.use('/api/orders', orderRouter); // API quản lý đơn hàng
 app.use('/api/upload', uploadRouter); // API xử lý upload file
 app.use('/api/favorites', favoriteRouter); // API quản lý món ăn yêu thích
