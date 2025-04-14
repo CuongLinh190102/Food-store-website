@@ -31,7 +31,8 @@ export default function CheckoutPage() {
     }
 
     await createOrder({ ...order, name: data.name, address: data.address });
-    navigate('/payment');
+    toast.success('Order created successfully!');
+    setTimeout(() => navigate('/payment'), 100);
   };
 
   return (

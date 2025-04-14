@@ -8,10 +8,30 @@ import PaypalButtons from '../../components/PaypalButtons/PaypalButtons';
 
 export default function PaymentPage() {
   const [order, setOrder] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    getNewOrderForCurrentUser().then(data => setOrder(data));
+    const fetchOrder = async () => {
+      try {
+        const data = await getNewOrderForCurrentUser();
+        if (!data) {
+          throw new Error('Order not found');
+        }
+        setOrder(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrder();
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!order) return <div>No active order found</div>;
 
   if (!order) return;
 

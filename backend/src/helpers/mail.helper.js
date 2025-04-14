@@ -5,8 +5,8 @@ export const sendEmailReceipt = function (order) {
   const mailClient = getClient(); // Lấy client từ cấu hình Mailgun
 
   mailClient.messages
-    .create('sandbox80bf0ab584cb42dbbf5cf0e9a249e188.mailgun.org', {
-      from: 'orders@fooddelivery.com', // Địa chỉ email gửi đi
+    .create('sandbox681c9079caf44d8894845fcc4df84d54.mailgun.org', {
+      from: 'postmaster@sandbox681c9079caf44d8894845fcc4df84d54.mailgun.org', // Địa chỉ email gửi đi
       to: order.user.email, // Địa chỉ email của người nhận (khách hàng)
       subject: `Order ${order.id} is being processed`, // Tiêu đề email
       html: getReceiptHtml(order), // Nội dung email được tạo từ đơn hàng

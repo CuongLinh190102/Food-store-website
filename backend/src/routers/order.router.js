@@ -80,16 +80,16 @@ router.put(
   handler(async (req, res) => {
     const { paymentId } = req.body;
     const order = await getNewOrderForCurrentUser(req);
-    // if (!order) {
-    //   res.status(BAD_REQUEST).send('Order Not Found!');
-    //   return;
-    // }
+    if (!order) {
+      res.status(BAD_REQUEST).send('Order Not Found!');
+      return;
+    }
 
     order.paymentId = paymentId;
     order.status = OrderStatus.PAYED;
     await order.save();
 
-    //sendEmailReceipt(order);
+    sendEmailReceipt(order);
 
     res.send(order._id);
   })
@@ -159,7 +159,7 @@ router.get(
   handler(async (req, res) => {
     const order = await getNewOrderForCurrentUser(req);
     if (order) res.send(order);
-    //else res.status(BAD_REQUEST).send();
+    else res.status(BAD_REQUEST).send();
   })
 );
 

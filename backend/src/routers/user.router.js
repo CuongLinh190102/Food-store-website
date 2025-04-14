@@ -237,11 +237,11 @@ router.put(
  *      required: false
  *      schema:
  *       type: string
- *    responses:
- *     200:
- *      description: List of users retrieved successfully
- *     403:
- *      description: Unauthorized access
+ *   responses:
+ *    200:
+ *     description: List of users retrieved successfully
+ *    403:
+ *     description: Unauthorized access
  */
 
 router.get(
@@ -369,13 +369,13 @@ router.get(
  *               isAdmin:
  *                 type: boolean
  *                 example: true
- *      responses:
- *       200:
- *         description: User information updated
- *       400:
- *         description: Invalid request data
- *       403:
- *         description: Unauthorized access
+ *     responses:
+ *      200:
+ *       description: User information updated
+ *      400:
+ *       description: Invalid request data
+ *      403:
+ *       description: Unauthorized access
  */
 
 
