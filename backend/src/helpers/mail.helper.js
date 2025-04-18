@@ -1,18 +1,25 @@
 import { getClient } from '../config/mail.config.js';
 
 // Hàm gửi email xác nhận đơn hàng
-export const sendEmailReceipt = function (order) {
-  const mailClient = getClient(); // Lấy client từ cấu hình Mailgun
+export const sendEmailReceipt = async function (order) {
+  const mailClient = getClient(); 
 
-  mailClient.messages
-    .create('sandbox681c9079caf44d8894845fcc4df84d54.mailgun.org', {
-      from: 'postmaster@sandbox681c9079caf44d8894845fcc4df84d54.mailgun.org', // Địa chỉ email gửi đi
-      to: order.user.email, // Địa chỉ email của người nhận (khách hàng)
-      subject: `Order ${order.id} is being processed`, // Tiêu đề email
-      html: getReceiptHtml(order), // Nội dung email được tạo từ đơn hàng
-    })
-    .then(msg => console.log(msg)) // In ra thông báo thành công
-    .catch(err => console.log(err)); // In ra lỗi nếu có
+  try {
+    const { data, error } = await mailClient.emails.send({
+      from: 'Food Delivery <onboarding@resend.dev>', // Hoặc domain bạn xác minh
+      to: [order.user.email],
+      subject: `Order ${order.id} is being processed`,
+      html: getReceiptHtml(order), // GIỮ NGUYÊN NỘI DUNG
+    });
+
+    if (error) {
+      console.error('Resend email error:', error);
+    } else {
+      console.log('Resend email sent successfully:', data);
+    }
+  } catch (err) {
+    console.error('Unexpected Resend error:', err);
+  }
 };
 
 // Hàm tạo nội dung email HTML dựa trên đơn hàng
