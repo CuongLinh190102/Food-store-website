@@ -46,6 +46,9 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
  *        address:
  *         type: string
  *         example: "Vietnam"
+ *       phone:
+ *        type: string
+ *        example: "0123456789"
  *   responses:
  *    200:
  *     description: Register successful
@@ -56,7 +59,7 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
 router.post(
   '/register',
   handler(async (req, res) => {
-    const { name, email, password, address } = req.body;
+    const { name, email, password, address, phone } = req.body;
 
     const user = await UserModel.findOne({ email });
 
@@ -75,6 +78,7 @@ router.post(
       email: email.toLowerCase(),
       password: hashedPassword,
       address,
+      phone,
     };
 
     const result = await UserModel.create(newUser);
@@ -138,12 +142,18 @@ router.post(
  *      schema:
  *       type: object
  *       properties:
+ *        avatar:
+ *         type: string
+ *         example: "http://res.cloudinary.com/dd1sv7vep/image/upload/v1743442356/vg0rettsl6nmxihxturx.jpg"
  *        name:
  *         type: string
  *         example: "DPTU"
  *        address:
  *         type: string
  *         example: "Vietnam"
+ *        phone:
+ *         type: string
+ *         example: "0987475789"
  *   responses:
  *    200:
  *     description: Update successful
@@ -156,10 +166,10 @@ router.put(
   '/updateProfile',
   auth,
   handler(async (req, res) => {
-    const { name, address } = req.body;
+    const { avatar, name, address, phone } = req.body;
     const user = await UserModel.findByIdAndUpdate(
       req.user.id,
-      { name, address },
+      { avatar, name, address, phone },
       { new: true }
     );
 
@@ -357,6 +367,9 @@ router.get(
  *               id:
  *                 type: string
  *                 example: "656fd15d9a8a6b001c8e32ef"
+ *               avatar:
+ *                type: string
+ *                example: "http://res.cloudinary.com/dd1sv7vep/image/upload/v1743442356/vg0rettsl6nmxihxturx.jpg"
  *               name:
  *                 type: string
  *                 example: "DPT"
@@ -366,6 +379,9 @@ router.get(
  *               address:
  *                 type: string
  *                 example: "Vietnam"
+ *               phone:
+ *                 type: string
+ *                 example: "0123456798"
  *               isAdmin:
  *                 type: boolean
  *                 example: true
@@ -383,11 +399,13 @@ router.put(
   '/update',
   admin,
   handler(async (req, res) => {
-    const { id, name, email, address, isAdmin } = req.body;
+    const { id, avatar, name, email, address, phone, isAdmin } = req.body;
     await UserModel.findByIdAndUpdate(id, {
+      avatar,
       name,
       email,
       address,
+      phone,
       isAdmin,
     });
 
@@ -414,6 +432,8 @@ const generateTokenResponse = user => {
     name: user.name,
     address: user.address,
     isAdmin: user.isAdmin,
+    phone: user.phone,
+    avatar: user.avatar,
     token,
   };
 };

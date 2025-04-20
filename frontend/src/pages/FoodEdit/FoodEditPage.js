@@ -33,7 +33,7 @@ export default function FoodEditPage() {
       reset(food);
       setImageUrl(food.imageUrl);
     });
-  }, [foodId]);
+  }, [foodId, reset, isEditMode]);
 
   const submit = async foodData => {
     const food = { ...foodData, imageUrl };

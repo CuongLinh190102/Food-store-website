@@ -9,6 +9,8 @@ export const UserSchema = new Schema(
     address: { type: String, required: true }, // Địa chỉ của người dùng, bắt buộc
     isAdmin: { type: Boolean, default: false }, // Quyền admin, mặc định là `false`
     isBlocked: { type: Boolean, default: false }, // Trạng thái bị chặn, mặc định là `false`
+    avatar: { type: String, default: '' }, // Đường dẫn đến ảnh đại diện, mặc định là chuỗi rỗng
+    phone: { type: String, default: '' }, // Số điện thoại, mặc định là chuỗi rỗng
   },
   {
     timestamps: true, // Tự động thêm `createdAt` và `updatedAt`
