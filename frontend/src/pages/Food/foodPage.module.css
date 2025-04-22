@@ -98,3 +98,158 @@
   opacity: 0.9;
   cursor: pointer;
 }
+
+.reviewSection {
+  margin-top: 2rem;
+  grid-column: 1 / -1;
+  border-top: 1px solid #eee;
+  padding-top: 2rem;
+}
+
+.reviewForm {
+  margin-bottom: 2rem;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.ratingInput {
+  margin-bottom: 1rem;
+}
+
+.reviewTextarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.submitReviewBtn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reviewsList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.reviewItem {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.reviewAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reviewDate {
+  color: #666;
+  font-size: 0.8rem;
+  display: block;
+}
+
+.reviewComment {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pageBtn {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.pageBtn.active {
+  background: #ff6b6b;
+  color: white;
+  border-color: #ff6b6b;
+}
+
+.loginPrompt {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.loginPrompt button {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.reviewButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.cancelReviewBtn {
+  background: #ddd;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reviewActions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.editReviewBtn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.deleteReviewBtn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.editedBadge {
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+}
