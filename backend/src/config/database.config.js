@@ -11,7 +11,7 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
 
 // Hàm kết nối cơ sở dữ liệu MongoDB
-export const dbconnect = async () => {
+const dbconnect = async () => {
   try {
     // Kết nối đến MongoDB bằng URI từ biến môi trường
     connect(process.env.MONGO_URI, {
@@ -64,3 +64,5 @@ async function seedFoods() {
 
   console.log('Foods seed Is Done!'); // Thông báo đã thêm food thành công
 }
+
+export { dbconnect, seedUsers, seedFoods }; // Xuất các hàm để sử dụng ở nơi khác
