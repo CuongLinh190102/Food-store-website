@@ -7,6 +7,7 @@ import Title from '../../components/Title/Title';
 import Search from '../../components/Search/Search';
 import Price from '../../components/Price/Price';
 import { toast } from 'react-toastify';
+import DashboardSideBar from '../../components/DashboardSidebar/DashboardSidebar';
 
 export default function FoodsAdminPage() {
   const [foods, setFoods] = useState();
@@ -41,31 +42,40 @@ export default function FoodsAdminPage() {
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.list}>
-        <Title title="Manage Foods" margin="1rem auto" />
-        <Search
-          searchRoute="/admin/foods/"
-          defaultRoute="/admin/foods"
-          margin="1rem 0"
-          placeholder="Search Foods"
-        />
-        <Link to="/admin/addFood" className={classes.add_food}>
-          Add Food +
-        </Link>
-        <FoodsNotFound />
-        {foods &&
-          foods.map(food => (
-            <div key={food.id} className={classes.list_item}>
-              <img src={food.imageUrl} alt={food.name} />
-              <Link to={'/food/' + food.id}>{food.name}</Link>
-              <Price price={food.price} />
-              <div className={classes.actions}>
-                <Link to={'/admin/editFood/' + food.id}>Edit</Link>
-                <Link onClick={() => deleteFood(food)}>Delete</Link>
-              </div>
+    <div className={classes.dashboardLayout}>
+      <DashboardSideBar />
+      
+      <div className={classes.mainContent}>
+        <div className={classes.container}>
+          <div className={classes.list}>
+            <Title title="Manage Foods" />
+            <Search
+              searchRoute="/admin/foods/"
+              defaultRoute="/admin/foods"
+              placeholder="Search Foods"
+            />
+            <Link to="/admin/addFood" className={classes.add_food}>
+              Add Food +
+            </Link>
+            
+            <FoodsNotFound />
+            
+            <div className={classes.foodsList}>
+              {foods &&
+                foods.map(food => (
+                  <div key={food.id} className={classes.list_item}>
+                    <img src={food.imageUrl} alt={food.name} className={classes.foodImage} />
+                    <Link to={'/food/' + food.id} className={classes.foodName}>{food.name}</Link>
+                    <Price price={food.price} className={classes.foodPrice} />
+                    <div className={classes.actions}>
+                      <Link to={'/admin/editFood/' + food.id} className={classes.actionLink}>Edit</Link>
+                      <span className={classes.actionLink} onClick={() => deleteFood(food)}>Delete</span>
+                    </div>
+                  </div>
+                ))}
             </div>
-          ))}
+          </div>
+        </div>
       </div>
     </div>
   );

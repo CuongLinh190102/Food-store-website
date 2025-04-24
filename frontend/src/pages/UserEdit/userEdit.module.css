@@ -1,20 +1,32 @@
+/* Layout chung */
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.mainContent {
+  margin-left: 25rem;
+  padding: 2rem;
+  width: calc(100% - 25rem);
+  transition: margin-left 0.3s ease;
+}
+
+/* Container chính */
 .container {
-  margin-top: 1rem;
-  margin-bottom: 10rem;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .content {
-  margin: 1rem;
-  max-width: 25rem;
   width: 100%;
+  max-width: 35rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 25rem;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -23,40 +35,64 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.avatarPlaceholder {
-  display: block;
-  width: 100%;
-  height: 20rem;
-  border-radius: 1rem;
-  border: 1px solid #e72929;
-  margin: 0.5rem 0 1rem 0;
-}
-
-.avatarPlaceholder img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
+  margin: 0.5rem 0;
 }
 
 .avatarInput {
-  display: none;
+  width: 100%;
+  padding: 0.5rem 0;
 }
 
 .uploadingText {
   color: #666;
   font-size: 0.9em;
-  margin-top: 5px;
+  margin-top: 0.5rem;
+  display: block;
 }
 
 .checkboxContainer {
-  margin: 15px 0;
   display: flex;
   align-items: center;
+  margin: 1rem 0;
+}
+
+.checkboxContainer input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.8rem;
 }
 
 .checkboxContainer label {
-  margin-left: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 0 1rem;
+  }
+
+  .avatarPreview {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .form {
+    gap: 0.8rem;
+  }
+
+  .checkboxContainer {
+    margin: 0.5rem 0;
+  }
 }

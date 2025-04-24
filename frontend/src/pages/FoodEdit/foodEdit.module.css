@@ -1,30 +1,84 @@
+/* Layout */
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.mainContent {
+  margin-left: 25rem;
+  padding: 2rem;
+  width: calc(100% - 25rem);
+  transition: margin-left 0.3s ease;
+}
+
+/* Container */
 .container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 10rem;
+  width: 100%;
 }
 
-.content,
+.content {
+  width: 100%;
+  max-width: 40rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 25rem;
+  gap: 1.5rem;
   width: 100%;
 }
 
-.image_link {
+/* Image Upload */
+.fileInput {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.uploadingText {
   display: block;
-  width: 100%;
-  height: 20rem;
-  border-radius: 1rem;
-  border: 1px solid #e72929;
-  margin: 0.5rem 0 1rem 0;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
-.image_link img {
-  object-fit: cover;
+.imagePreview {
+  width: 100%;
+  max-height: 300px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.imagePreview img {
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 0 1rem;
+  }
+
+  .form {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .imagePreview {
+    max-height: 200px;
+  }
 }

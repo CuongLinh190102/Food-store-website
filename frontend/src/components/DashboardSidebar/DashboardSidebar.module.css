@@ -1,0 +1,85 @@
+/* Sidebar Base Styles */
+.sidebar {
+    width: 18rem;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    height: 100vh;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    z-index: 10000;
+    transform: translateX(0);
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+  }
+  
+  .menuItem {
+    width: 100%;
+    height: 4rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .menuItem img {
+    width: 2rem;
+    height: 2rem;
+    margin: 1rem;
+  }
+  
+  .menuItem h2 {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+  }
+  
+  /* Mobile Toggle Button */
+  .mobileToggle {
+    display: block;
+    position: fixed;
+    top: 1.5rem;
+    left: 1rem;
+    background: #000000;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    z-index: 11000;
+    cursor: pointer;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+  
+    .sidebar.open {
+      transform: translateX(0);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .sidebar {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .menuItem {
+      height: 6rem;
+    }
+  
+    .menuItem img {
+      width: 4rem;
+      height: 4rem;
+    }
+  
+    .menuItem h2 {
+      font-size: 1.5rem;
+    }
+  }

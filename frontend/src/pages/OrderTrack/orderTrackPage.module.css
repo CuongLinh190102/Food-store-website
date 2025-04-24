@@ -1,16 +1,28 @@
+/* Layout chung */
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.mainContent {
+  margin-left: 25rem; /* Độ rộng của sidebar */
+  padding: 2rem;
+  width: calc(100% - 25rem);
+  transition: margin-left 0.3s ease;
+}
+
+/* Container chính */
 .container {
   margin-top: 1rem;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   max-width: 35rem;
-  margin-right: 1rem;
+  margin-bottom: 2rem;
 }
 
 .header {
@@ -20,18 +32,26 @@
 .header > div {
   margin-top: 1rem;
   font-size: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .header strong {
   display: inline-block;
-  width: 20%;
+  width: 6rem;
+  min-width: 6rem;
+}
+
+.mapContainer {
+  width: 100%;
+  max-width: 35rem;
+  margin-bottom: 2rem;
 }
 
 .payment {
   width: 100%;
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 5rem;
+  margin: 2rem 0;
 }
 
 .payment a {
@@ -39,4 +59,42 @@
   color: white;
   padding: 0.8rem 5rem;
   border-radius: 1rem;
+  display: inline-block;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header > div {
+    flex-direction: column;
+  }
+
+  .header strong {
+    width: 100%;
+    margin-bottom: 0.3rem;
+  }
+
+  .payment a {
+    padding: 0.8rem 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .content,
+  .mapContainer {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .payment a {
+    width: 100%;
+    padding: 0.8rem 0;
+  }
 }

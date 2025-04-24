@@ -14,7 +14,7 @@
   left: 0;
   background: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  z-index: 1000;
+  z-index: 10001;
 }
 
 .header nav .logo {
@@ -72,8 +72,17 @@
   position: relative;
 }
 
+.submenu_user {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: #e72929;
+  cursor: pointer;
+}
+
 .submenu {
   position: absolute;
+  text-align: center;
   top: 100%;
   left: 0;
   z-index: 1001;
@@ -96,6 +105,7 @@
 }
 
 .submenu a:hover {
+  width: 100%;
   background-color: #e72929;
   color: white;
 }

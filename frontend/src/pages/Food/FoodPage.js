@@ -194,54 +194,67 @@ export default function FoodPage() {
         <NotFound message="Food Not Found!" linkText="Back To Homepage" />
       ) : (
         <div className={classes.container}>
-          <img
-            className={classes.image}
-            src={`${food.imageUrl}`}
-            alt={food.name}
-          />
-
-          <div className={classes.details}>
-            <div className={classes.header}>
-              <span className={classes.name}>{food.name}</span>
-              <span
-                onClick={toggleFavorite}
-                className={`${classes.favorite} ${
-                  isFavorite ? '' : classes.not
-                }`}
-              >
-                ❤
-              </span>
-            </div>
-            <div className={classes.rating}>
-              <StarRating stars={food.stars} size={25} />
+          <div className={classes.foodContent}>
+            <div className={classes.imageContainer}>
+              <img
+                className={classes.image}
+                src={`${food.imageUrl}`}
+                alt={food.name}
+              />
             </div>
 
-            <div className={classes.origins}>
-              {food.origins?.map(origin => (
-                <span key={origin}>{origin}</span>
-              ))}
-            </div>
+            <div className={classes.details}>
+              <div className={classes.header}>
+                <span className={classes.name}>{food.name}</span>
+                <span
+                  onClick={toggleFavorite}
+                  className={`${classes.favorite} ${
+                    isFavorite ? '' : classes.not
+                  }`}
+                >
+                  ❤
+                </span>
+              </div>
+              <div className={classes.ratingContainer}>
+                <div className={classes.starRating}>
+                  <StarRating stars={food.stars || 0} size={25} />
+                </div>
+                <div className={classes.averageRating}>
+                  {food.stars || 0}
+                  <span>/5</span>
+                </div>
+              </div>
 
-            <div className={classes.tags}>
-              {food.tags && (
-                <Tags
-                  tags={food.tags.map(tag => ({ name: tag }))}
-                  forFoodPage={true}
-                />
-              )}
-            </div>
+              <div className={classes.origins}>
+                {food.origins?.map(origin => (
+                  <span key={origin}>{origin}</span>
+                ))}
+              </div>
 
-            <div className={classes.cook_time}>
-              <span>
-                Time to cook about <strong>{food.cookTime}</strong> minutes
-              </span>
-            </div>
+              <div className={classes.tags}>
+                {food.tags && (
+                  <Tags
+                    tags={food.tags.map(tag => ({ name: tag }))}
+                    forFoodPage={true}
+                  />
+                )}
+              </div>
 
-            <div className={classes.price}>
-              <Price price={food.price} />
-            </div>
+              <div className={classes.cook_time}>
+                <span>
+                  Time to cook about <strong>{food.cookTime}</strong> minutes
+                </span>
+              </div>
 
-            <button onClick={handleAddToCart}>Add To Cart</button>
+              <div className={classes.price}>
+                <Price price={food.price} />
+              </div>
+
+              <button 
+                className={classes.addToCartBtn}
+                onClick={handleAddToCart}
+              >Add To Cart</button>
+            </div>
           </div>
 
           {/* Review Section */}

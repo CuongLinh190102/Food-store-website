@@ -34,8 +34,9 @@ export default function Header() {
           <ul>
             {user ? (
               <li className={classes.submenu_container}>
-                <Link to="/dashboard">{user.name}</Link>
+                <span className={classes.submenu_user}>{user.name}</span>
                 <div className={classes.submenu}>
+                  { user.isAdmin && <Link to="/dashboard">Dashboard</Link> }
                   <Link to="/profile">Profile</Link>
                   <Link to="/orders">Orders</Link>
                   <a onClick={logout}>Logout</a>

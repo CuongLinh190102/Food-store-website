@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 * {
+  --primary-color: #ff6b6b;
+  --secondary-color: #ffa5a5;
+  --accent-color: #4ecdc4;
+  --text-color: #333333;
+  --light-text: #767676;
+  --background-color: #ffffff;
+  --light-background: #f9f9f9;
+  --border-color: #eeeeee;
+  --border-radius: 8px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  --container-width: 1200px;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 

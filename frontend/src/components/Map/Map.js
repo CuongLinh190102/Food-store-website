@@ -52,9 +52,12 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
     click(e) {
       !readonly && setPosition(e.latlng);
     },
-    locationfound(e) {
+    async locationfound(e) {
       setPosition(e.latlng);
       map.flyTo(e.latlng, 13);
+
+      const address = await reverseGeocode(e.latlng);
+      onChange(e.latlng, address);
     },
     locationerror(e) {
       toast.error(e.message);
@@ -96,4 +99,20 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
       )}
     </>
   );
+}
+
+async function reverseGeocode(latlng) {
+  try {
+    const { lat, lng } = latlng;
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+    );
+    const data = await response.json();
+    
+    // Trả về địa chỉ dạng text
+    return data.display_name || "Không thể xác định địa chỉ";
+  } catch (error) {
+    console.error("Reverse geocoding error:", error);
+    return "Không thể lấy địa chỉ";
+  }
 }

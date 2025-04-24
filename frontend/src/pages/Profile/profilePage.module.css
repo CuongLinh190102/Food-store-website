@@ -1,19 +1,33 @@
+/* Layout chung */
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.mainContent {
+  margin-left: 25rem; /* Độ rộng của sidebar */
+  padding: 2rem;
+  width: calc(100% - 25rem);
+  transition: margin-left 0.3s ease;
+}
+
+/* Container chính */
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100%;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .details {
-  width: 28rem;
+  width: 100%;
+  max-width: 35rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 25rem;
   width: 100%;
 }
 
@@ -22,24 +36,42 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.avatarPlaceholder {
-  display: block;
-  width: 100%;
-  height: 20rem;
-  border-radius: 1rem;
-  border: 1px solid #e72929;
-  margin: 0.5rem 0 1rem 0;
-}
-
-.avatarPlaceholder img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
+  margin: 0.5rem 0;
 }
 
 .avatarInput {
-  display: none;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 0;
+    padding: 1rem;
+  }
+
+  .details {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .form {
+    padding: 0 0.5rem;
+  }
+
+  .avatarPreview {
+    width: 80px;
+    height: 80px;
+  }
 }

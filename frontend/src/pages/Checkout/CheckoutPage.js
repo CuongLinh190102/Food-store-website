@@ -12,6 +12,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
 import Map from '../../components/Map/Map';
+
 export default function CheckoutPage() {
   const { cart } = useCart();
   const { user } = useAuth();
@@ -22,15 +23,21 @@ export default function CheckoutPage() {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm();
 
-  const submit = async data => {
-    if (!order.addressLatLng) {
-      toast.warning('Please select your location on the map');
-      return;
-    }
+  const handleLocationChange = (latlng, address) => {
+    setOrder(prev => ({ ...prev, addressLatLng: latlng }));
+    setValue("address", address); // Cập nhật trường address trong form
+  };
 
-    await createOrder({ ...order, name: data.name, address: data.address });
+  const submit = async data => {
+    await createOrder({ 
+      ...order, 
+      name: data.name, 
+      address: data.address,
+      addressLatLng: order.addressLatLng || { lat: '', lng: '' },
+    });
     toast.success('Order created successfully!');
     setTimeout(() => navigate('/payment'), 100);
   };
@@ -60,9 +67,7 @@ export default function CheckoutPage() {
           <Title title="Choose Your Location" fontSize="1.6rem" />
           <Map
             location={order.addressLatLng}
-            onChange={latlng => {
-              setOrder({ ...order, addressLatLng: latlng });
-            }}
+            onChange={handleLocationChange}
           />
         </div>
 

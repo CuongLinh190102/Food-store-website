@@ -12,8 +12,8 @@ function ProfileCard(
 
                 <div className={classes.icon}>
                     <a href='https://www.facebook.com/'><i className='fa-brands fa-facebook-f'></i></a>
-                    <a href='x.com'><i className='fa-brands fa-twitter'></i></a>
-                    <a href='instagram.com'><i className='fa-brands fa-instagram'></i></a>
+                    <a href='https://x.com/'><i className='fa-brands fa-twitter'></i></a>
+                    <a href='https://www.instagram.com/'><i className='fa-brands fa-instagram'></i></a>
                 </div>
             </div>
         </div>

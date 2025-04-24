@@ -5,14 +5,16 @@ import Title from '../../components/Title/Title';
 import { useCart } from '../../hooks/useCart';
 import classes from './cartPage.module.css';
 import NotFound from '../../components/NotFound/NotFound';
+import QuantitySelector from '../../components/QuantitySelector/QuantitySelector';
+
 export default function CartPage() {
   const { cart, removeFromCart, changeQuantity } = useCart();
   return (
     <>
-      <Title title="Cart Page" margin="1.5rem 0 0 2.5rem" />
+      <Title title="Your Shopping Cart" fontSize="1.8rem" margin="1.5rem 0 0 2.5rem" />
 
       {cart.items.length === 0 ? (
-        <NotFound message="Cart Page Is Empty!" />
+        <NotFound message="Your cart is empty!" />
       ) : (
         <div className={classes.container}>
           <ul className={classes.list}>
@@ -26,21 +28,10 @@ export default function CartPage() {
                 </div>
 
                 <div>
-                  <select
+                  <QuantitySelector
                     value={item.quantity}
-                    onChange={e => changeQuantity(item, Number(e.target.value))}
-                  >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                  </select>
+                    onChange={(newQuantity) => changeQuantity(item, newQuantity)}
+                  />
                 </div>
 
                 <div>
@@ -60,6 +51,7 @@ export default function CartPage() {
           </ul>
 
           <div className={classes.checkout}>
+            <h2>Order Summary</h2>
             <div>
               <div className={classes.foods_count}>{cart.totalCount}</div>
               <div className={classes.total_price}>

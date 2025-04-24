@@ -5,8 +5,8 @@ import { FoodModel } from './food.model.js';
 // Schema lưu trữ tọa độ (latitude, longitude) của địa chỉ giao hàng
 export const LatLngSchema = new Schema(
   {
-    lat: { type: String, required: true }, // Vĩ độ (latitude), bắt buộc
-    lng: { type: String, required: true }, // Kinh độ (longitude), bắt buộc
+    lat: { type: String }, // Vĩ độ (latitude)
+    lng: { type: String }, // Kinh độ (longitude)
   },
   {
     _id: false, // Không tạo `_id` riêng cho schema này
@@ -36,7 +36,7 @@ const orderSchema = new Schema(
   {
     name: { type: String, required: true }, // Tên khách hàng đặt hàng
     address: { type: String, required: true }, // Địa chỉ giao hàng
-    addressLatLng: { type: LatLngSchema, required: true }, // Tọa độ địa chỉ giao hàng
+    addressLatLng: { type: LatLngSchema }, // Tọa độ địa chỉ giao hàng
     paymentId: { type: String }, // ID thanh toán (ví dụ: từ PayPal, Stripe, v.v.)
     totalPrice: { type: Number, required: true }, // Tổng giá trị đơn hàng
     items: { type: [OrderItemSchema], required: true }, // Danh sách các món trong đơn hàng

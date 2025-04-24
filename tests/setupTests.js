@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 
-// Dọn dẹp sau mỗi test
+// Chỉ cần cleanup, không mock React nữa
 afterEach(() => {
   cleanup();
 });

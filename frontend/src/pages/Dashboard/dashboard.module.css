@@ -1,40 +1,187 @@
-.container {
-  margin: auto;
-  margin-top: 1rem;
-  max-width: 70rem;
-  width: 100%;
-}
+/* dashboard.module.css */
 
-.menu {
+.dashboard {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  min-height: 100vh;
+  background-color: #f5f7fa;
 }
 
-.menu a {
-  width: 22rem;
-  height: 11rem;
-  margin: 1.5rem 2rem;
-  background-color: whitesmoke;
-  box-shadow: 0 0 5px 1px;
-  border-radius: 1rem;
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 18rem; /* Điều chỉnh theo width của sidebar */
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.statCard {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.statCard h3 {
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.statCard p {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.recentOrders {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.recentOrders h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f8f9fa;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+th {
+  color: #7f8c8d;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+td {
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Status badges */
+td:nth-child(4) {
+  font-weight: 600;
+}
+
+td:nth-child(4):contains("Đang giao") {
+  color: #f39c12;
+}
+
+td:nth-child(4):contains("Hoàn thành") {
+  color: #27ae60;
+}
+
+td:nth-child(4):contains("Đã hủy") {
+  color: #e74c3c;
+}
+
+.titleIcon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.sectionIcon {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.statIcon {
+  margin-bottom: 10px;
+  color: #4CAF50; /* Màu xanh lá */
+}
+
+.viewButton {
   display: flex;
   align-items: center;
-  color: #444444;
-  justify-content: space-around;
+  gap: 5px;
+  padding: 5px 10px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.menu img {
-  width: 10rem;
-  height: 10rem;
-  margin: 1rem;
+.viewButton:hover {
+  background-color: #0b7dda;
 }
 
-.menu a:hover {
-  box-shadow: 2px 2px 10px 1px grey;
+/* Responsive */
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
+    padding: 1rem;
+  }
 }
 
-.menu h2 {
-  font-size: 2.5rem;
-  margin-right: 2rem;
+@media (max-width: 768px) {
+  .statsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 576px) {
+  .mainContent {
+    padding: 0.5rem;
+  }
+
+  th, td {
+    padding: 0.75rem 0.5rem;
+  }
 }

@@ -11,6 +11,7 @@ import {
 } from '../../services/foodService';
 import NotFound from '../../components/NotFound/NotFound';
 import classes from './HomePage.module.css';
+import HowItWorks from './HowItWork';
 
 const initialState = { foods: [], tags: [] };
 
@@ -50,6 +51,7 @@ export default function HomePage() {
         {foods.length === 0 && <NotFound linkText="Reset Search" />}
         <Thumbnails foods={foods} />
       </div>
+      <HowItWorks />
     </>
   );
 }

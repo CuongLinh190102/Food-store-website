@@ -5,12 +5,13 @@
 
 .container a {
   font-size: 16px;
-  color: #fff;
+  background-color: #b8dbfa;
+  color: #252525;
   white-space: nowrap;
   cursor: pointer;
   padding: 7px 21px;
   margin: 5px;
-  border-radius: 6px;
+  border-radius: 2rem;
   border: 1px solid;
   display: inline-block;
   transition: all .3s ease
@@ -19,5 +20,6 @@
 .container a:hover{
   color: #252525;
   background-color: #fff;
-  border-color: #fff
+  border-color: #fff;
+  border: 1px solid;
 }

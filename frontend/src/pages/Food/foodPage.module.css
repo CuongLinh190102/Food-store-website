@@ -1,109 +1,149 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 3rem;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-.container > * {
-  min-width: 25rem;
-  max-width: 40rem;
+.foodContent {
+  display: flex;
+  width: 100%;
+  gap: 3rem;
+}
+
+.imageContainer {
+  flex: 1;
+  min-width: 0;
 }
 
 .image {
-  border-radius: 3rem;
-  flex: 1 0;
+  width: auto;
+  height: auto;
+  max-width: 400px;
+  max-height: 400px;
   object-fit: cover;
-  height: 35rem;
-  margin: 1rem;
+  border-radius: 2rem;
 }
 
 .details {
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  flex: 1 0;
-  border-radius: 3rem;
-  padding: 2rem;
-  color: black;
-  margin-left: 1rem;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .name {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
+  color: #333;
 }
 
 .favorite {
   color: #e72929;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .favorite.not {
-  color: grey;
+  color: #ccc;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.starRating {
+  display: flex;
+  align-items: center;
+}
+
+.averageRating {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.averageRating span {
+  color: #666;
+  font-weight: normal;
+  margin-left: 0.3rem;
 }
 
 .origins {
   display: flex;
   flex-wrap: wrap;
-  margin: 0.7rem 0;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .origins > span {
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  margin: 0.5rem 0.5rem 0 0;
+  padding: 7px 21px;
+  font-size: 16px;
   border-radius: 2rem;
-  background-color: aliceblue;
+  border: 1px solid #b8dbfa;
+  background-color: #b8dbfa;
+  color: #333;
+}
+
+.tags {
+  margin-bottom: 1.5rem;
 }
 
 .cook_time {
-  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #555;
 }
 
-.cook_time span {
-  padding: 0.6rem 2rem 0.6rem 0;
-  border-radius: 10rem;
-  font-size: 1.3rem;
+.cook_time strong {
+  color: #333;
 }
 
 .price {
-  font-size: 1.8rem;
-  margin: 2rem 2rem 2rem 0;
-  color: green;
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #2e8b57;
+  font-weight: bold;
 }
 
 .price::before {
   content: 'Price: ';
-  color: darkgrey;
+  color: #666;
+  font-weight: normal;
 }
 
-.container button {
+.addToCartBtn {
   color: white;
   background-color: #e72929;
   border: none;
-  font-size: 1.2rem;
-  padding: 1rem;
-  border-radius: 10rem;
-  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.2s;
 }
 
-.container button:hover {
+.addToCartBtn:hover {
   opacity: 0.9;
-  cursor: pointer;
 }
 
 .reviewSection {
-  margin-top: 2rem;
-  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid #eee;
-  padding-top: 2rem;
 }
 
 .reviewForm {
@@ -213,43 +253,31 @@
   gap: 1rem;
 }
 
-.cancelReviewBtn {
-  background: #ddd;
-  color: #333;
+.deleteReviewBtn {
+  background: #f44336;
+  color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.reviewActions {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.editReviewBtn {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.deleteReviewBtn {
-  background: #f44336;
-  color: white;
-  border: none;
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
 .editedBadge {
   color: #666;
   font-size: 0.8rem;
   font-style: italic;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.noReviews {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+  background: #f9f9f9;
+  border-radius: 4px;
 }

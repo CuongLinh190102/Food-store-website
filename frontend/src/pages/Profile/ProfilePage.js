@@ -9,6 +9,7 @@ import Button from '../../components/Button/Button';
 import ChangePassword from '../../components/ChangePassword/ChangePassword';
 import { uploadImage } from '../../services/uploadService';
 import { toast } from 'react-toastify';
+import DashboardSideBar from '../../components/DashboardSidebar/DashboardSidebar';
 
 export default function ProfilePage() {
   const {
@@ -36,63 +37,76 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.details}>
-        <Title title="Update Profile" />
-        <form 
-          onSubmit={handleSubmit(submit)}
-          className={classes.form}
-          noValidate        
-        >
-          <InputContainer label="Avatar">
-            <input type="file" accept="image/*" onChange={upload}/>
-          </InputContainer>
-          {avatarUrl && (
-            <a href={avatarUrl} className={classes.avatarLink} target="_blank" rel="noopener noreferrer">
-              <img 
-                src={avatarUrl} 
-                alt="Avatar Preview" 
-                className={classes.avatarPreview}
+    <div className={classes.dashboardLayout}>
+      {/* Thêm DashboardSideBar */}
+      <DashboardSideBar />
+
+      {/* Phần nội dung chính */}
+      <div className={classes.mainContent}>
+        <div className={classes.container}>
+          <div className={classes.details}>
+            <Title title="Update Profile" />
+            <form 
+              onSubmit={handleSubmit(submit)}
+              className={classes.form}
+              noValidate        
+            >
+              <InputContainer label="Avatar">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={upload}
+                  className={classes.avatarInput}
+                />
+              </InputContainer>
+              {avatarUrl && (
+                <a href={avatarUrl} className={classes.avatarLink} target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src={avatarUrl} 
+                    alt="Avatar Preview" 
+                    className={classes.avatarPreview}
+                  />
+                </a>
+              )}
+              <Input
+                defaultValue={user.name}
+                type="text"
+                label="Name"
+                {...register('name', {
+                  required: true,
+                  minLength: 1,
+                })}
+                error={errors.name}
               />
-            </a>
-          )}
-          <Input
-            defaultValue={user.name}
-            type="text"
-            label="Name"
-            {...register('name', {
-              required: true,
-              minLength: 1,
-            })}
-            error={errors.name}
-          />
-          <Input
-            defaultValue={user.address}
-            type="text"
-            label="Address"
-            {...register('address', {
-              required: true,
-              minLength: 1,
-            })}
-            error={errors.address}
-          />
-          <Input
-            defaultValue={user.phone || ''}
-            type="tel"
-            label="Phone Number"
-            {...register('phone', {
-              pattern: {
-                value: /^[0-9]{10,15}$/,
-                message: 'Please enter a valid phone number'
-              }
-            })}
-            error={errors.phone}
-          />
+              <Input
+                defaultValue={user.address}
+                type="text"
+                label="Address"
+                {...register('address', {
+                  required: true,
+                  minLength: 1,
+                })}
+                error={errors.address}
+              />
+              <Input
+                defaultValue={user.phone || ''}
+                type="tel"
+                label="Phone Number"
+                {...register('phone', {
+                  pattern: {
+                    value: /^[0-9]{10,15}$/,
+                    message: 'Please enter a valid phone number'
+                  }
+                })}
+                error={errors.phone}
+              />
 
-          <Button type="submit" text="Update" backgroundColor="#009e84" />
-        </form>
+              <Button type="submit" text="Update" backgroundColor="#009e84" />
+            </form>
 
-        <ChangePassword />
+            <ChangePassword />
+          </div>
+        </div>
       </div>
     </div>
   );
