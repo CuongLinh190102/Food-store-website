@@ -10,4 +10,4 @@ services:
       - "5000:5000"
     environment:
       - NODE_ENV=production
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI="mongodb+srv://phungocphong:X05QmaaTv5p3IC3k@cluster0.cfbm1f4.mongodb.net/food-store?retryWrites=true&w=majority"
