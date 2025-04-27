@@ -34,7 +34,10 @@ app.use(express.json());
 // Cấu hình CORS (Cross-Origin Resource Sharing)
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Chỉ chấp nhận request từ frontend chạy trên cổng 3000
+    origin: [
+      'https://food-store-website-2.vercel.app/',
+      'http://localhost:3000'
+    ],
     credentials: true, // Cho phép gửi cookie qua CORS
     optionsSuccessStatus: 200
   })
