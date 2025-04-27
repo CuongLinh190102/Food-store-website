@@ -35,7 +35,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      'https://food-store-website-2.vercel.app/',
+      'https://food-store-website-2.vercel.app',
       'http://localhost:3000'
     ],
     credentials: true, // Cho phép gửi cookie qua CORS
