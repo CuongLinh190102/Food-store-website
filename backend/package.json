@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "echo \"No build needed for Node.js backend\" && exit 0",
+    "build": "npm install --only=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
