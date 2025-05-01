@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import classes from './NewsPage.module.css';
+import { getAllRecipes } from '../../services/recipeService';
 
 function NewsPage() {
     const [recipes, setRecipes] = useState([]); 
@@ -9,7 +9,7 @@ function NewsPage() {
 
     async function getRecipes() {
         try {
-            let response = await axios.get(`http://localhost:5000/api/recipes`);
+            let response = await getAllRecipes();
             setRecipes(response.data.recipes);
         } catch (e) {
             console.log(e);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import classes from './NewsDetail.module.css';
+import { getRecipeById } from '../../services/recipeService';
 
 function NewsDetail() {
     const { id } = useParams();
@@ -10,7 +10,7 @@ function NewsDetail() {
     useEffect(() => {
         async function fetchRecipeDetail() {
             try {
-                let response = await axios.get(`http://localhost:5000/api/recipes/${id}`);
+                let response = await getRecipeById(id);
                 setRecipe(response.data);
             } catch (e) {
                 console.log(e);
