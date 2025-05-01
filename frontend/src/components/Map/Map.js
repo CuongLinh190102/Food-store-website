@@ -11,10 +11,11 @@ import {
 import { toast } from 'react-toastify';
 import * as L from 'leaflet';
 
-export default function Map({ readonly, location, onChange }) {
+export default function Map({ readonly, location, onChange, mapRef }) {
   return (
     <div className={classes.container}>
       <MapContainer
+        ref={mapRef}
         className={classes.map}
         center={[0, 0]}
         zoom={1}
@@ -40,17 +41,13 @@ export default function Map({ readonly, location, onChange }) {
 function FindButtonAndMarker({ readonly, location, onChange }) {
   const [position, setPosition] = useState(location);
 
-  useEffect(() => {
-    if (readonly) {
-      map.setView(position, 13);
-      return;
-    }
-    if (position) onChange(position);
-  }, [position]);
-
   const map = useMapEvents({
-    click(e) {
-      !readonly && setPosition(e.latlng);
+    async click(e) {
+      if (!readonly) { 
+        setPosition(e.latlng);
+        const address = await reverseGeocode(e.latlng);
+        onChange(e.latlng, address);
+      }
     },
     async locationfound(e) {
       setPosition(e.latlng);
@@ -63,6 +60,13 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
       toast.error(e.message);
     },
   });
+
+  useEffect(() => {
+    if (location) {
+      setPosition(location);
+      map.flyTo(location, 13);
+    }
+  }, [location, map]);
 
   const markerIcon = new L.Icon({
     iconUrl: '/marker-icon-2x.png',
@@ -86,8 +90,11 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
       {position && (
         <Marker
           eventHandlers={{
-            dragend: e => {
-              setPosition(e.target.getLatLng());
+            dragend: async (e) => {
+              const newPos = e.target.getLatLng();
+              setPosition(newPos);
+              const address = await reverseGeocode(newPos);
+              onChange(newPos, address)
             },
           }}
           position={position}
@@ -99,6 +106,19 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
       )}
     </>
   );
+}
+
+export async function forwardGeocode(address) {
+  try{
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
+    );
+    const data = await response.json();
+    return data[0] ? { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon)} : { lat: '', lng: '' };
+  } catch (error) {
+    console.error("Forward geocoding error:", error);
+    return { lat: '', lng: '' };
+  }
 }
 
 async function reverseGeocode(latlng) {
