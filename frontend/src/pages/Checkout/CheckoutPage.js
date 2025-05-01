@@ -76,7 +76,7 @@ export default function CheckoutPage() {
       addressLatLng: order.addressLatLng || { lat: '', lng: '' },
     });
     toast.success('Order created successfully!');
-    setTimeout(() => navigate('/payment'), 100);
+    setTimeout(() => navigate('/payment'), 200);
   };
 
   return (
