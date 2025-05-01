@@ -22,7 +22,7 @@ export default function FoodPage() {
   const [reviews, setReviews] = useState([]);
   const [avgStars, setAvgStars] = useState(0);
   const [comment, setComment] = useState('');
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -62,7 +62,7 @@ export default function FoodPage() {
           setRating(userRev.stars);
           setComment(userRev.comment);
         } else {
-          setRating(5);
+          setRating(0);
           setComment('');
         }
       }
@@ -134,7 +134,14 @@ export default function FoodPage() {
     const userData = JSON.parse(localStorage.getItem('user'));
     const token = userData?.token || '';
 
-    socketRef.current = io('http://localhost:5000', {
+    let SOCKET_URL;
+    if (process.env.NODE_ENV === 'production') {
+      SOCKET_URL = 'https://food-store-website-production.up.railway.app';
+    } else {
+      SOCKET_URL = 'http://localhost:5000';
+    }
+
+    socketRef.current = io(SOCKET_URL, {
       auth: {
         token: token
       }
@@ -156,7 +163,10 @@ export default function FoodPage() {
 
     socketRef.current.on('review-update', (data) => {
       if (data.foodId === id) {
+        console.log('Review update received:', data);
         setAvgStars(data.avgStars);
+        setFood(prev => ({ ...prev, stars: data.avgStars }));
+
         if (data.action === 'created') {
           setReviews(prev => [data.review, ...prev.slice(0, 9)]);
           if (data.review.userId._id === user?.id) {
@@ -170,11 +180,18 @@ export default function FoodPage() {
             setUserReview(data.review);
           }
         } else if (data.action === 'deleted') {
-          setReviews(prev => prev.filter(r => r._id !== data.review._id));
-          if (data.review.userId._id === user?.id) {
+          setReviews(prev => prev.filter(r => r._id !== data.reviewId));
+          if (data.review?.userId?._id === user?.id) {
             setUserReview(null);
-            setRating(5);
+            setRating(0);
             setComment('');
+          }
+
+          // Xử lý trường hợp xóa hết reviews
+          if (data.avgStars === 0) {
+            setReviews([]);
+            setAvgStars(0);
+            setFood(prev => ({ ...prev, stars: 0 }));
           }
         }
       }

@@ -137,8 +137,8 @@ router.delete(
       return res.status(FORBIDDEN).send('Not authorized to delete this review');
     }
 
+    console.log('Deleting review:', review);
     await notifyReviewUpdate(review._id, 'deleted');
-    await review.deleteOne();
     res.sendStatus(204);
   })
 );

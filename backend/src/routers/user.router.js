@@ -61,6 +61,8 @@ router.post(
   handler(async (req, res) => {
     const { name, email, password, address, phone } = req.body;
 
+    const avatar = 'http://res.cloudinary.com/dd1sv7vep/image/upload/v1745220069/ojimdixjcmwitxjnrnu2.jpg'
+
     const user = await UserModel.findOne({ email });
 
     if (user) {
@@ -74,6 +76,7 @@ router.post(
     );
 // CREATE - Tạo user mới
     const newUser = {
+      avatar,
       name,
       email: email.toLowerCase(),
       password: hashedPassword,

@@ -31,7 +31,7 @@ const ReviewSchema = new Schema(
   }
 );
 
-// Middleware xử lý cập nhật avgStars
+// Xử lý cập nhật avgStars
 const updateFoodStars = async function(review) {
   try {
     const avgStars = await this.constructor.calculateAvgStars(review.foodId);

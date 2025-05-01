@@ -1,13 +1,17 @@
 import { Server } from 'socket.io';
 import jwt from 'jsonwebtoken';
 import { ReviewModel } from './models/review.model.js';
+import { model } from 'mongoose';
 
 let io; // Biến lưu trữ instance Socket.io
 
 export function initSocket(server) {
   io = new Server(server, {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: [
+        'http://localhost:3000',
+        'https://food-store-website-2.vercel.app',
+      ],
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true,
       optionsSuccessStatus: 200
@@ -55,16 +59,42 @@ export const notifyReviewUpdate = async (reviewId, action) => {
   }
 
   try {
-    const review = await ReviewModel.findById(reviewId).populate('userId', 'name avatar');
-    if (!review) return;
+    let review, foodId;
+    console.log("Action: ", action);
 
-    const avgStars = await ReviewModel.calculateAvgStars(review.foodId);
+    // Xử lý trường hợp đã xóa review
+    if(action === 'deleted') {
+      // Lấy thông tin review đã xóa
+      review = await ReviewModel.findOneAndDelete({ _id: reviewId });
+      console.log("Delete: ", review);
+      if (!review) return;
+
+      foodId = review.foodId;
+      const remainingReviews = await ReviewModel.countDocuments({ foodId });
+      
+      if(remainingReviews === 0) {
+        await model('food').findByIdAndUpdate(foodId, { stars: 0 });
+        io.to(`food_${foodId}`).emit('review-update', {
+          foodId,
+          avgStars: 0,
+          review: null,
+          action: 'deleted',
+        });
+        return;
+      }
+    } else {
+      review = await ReviewModel.findById(reviewId).populate('userId', 'name avatar');
+      if (!review) return;
+      foodId = review.foodId;
+    }
+
+    const avgStars = await ReviewModel.calculateAvgStars(foodId);
 
     const data = {
-      foodId: review.foodId,
+      foodId,
       avgStars,
-      review: review.toObject(),
-      action, // 'created' | 'updated' | 'deleted'
+      review: review?.toObject?.(),
+      action
     };
 
     // Gửi đến tất cả clients trong phòng food tương ứng

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import DashboardSidebar from '../../components/DashboardSidebar/DashboardSidebar';
 import classes from './dashboard.module.css';
 import { getAll } from '../../services/orderService';
-import { FaUtensils, FaClipboardList, FaDollarSign, FaEye, FaHistory } from 'react-icons/fa';
+import { FaUtensils, FaClipboardList, FaDollarSign, FaHistory } from 'react-icons/fa';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -69,34 +69,34 @@ export default function Dashboard() {
             <div className={classes.statIcon}>
               <FaUtensils size={24} />
             </div>
-            <h3>Món ăn đã giao</h3>
+            <h3>Food delivered</h3>
             <p>{stats.totalItems}</p>
           </div>
           <div className={classes.statCard}>
             <div className={classes.statIcon}>
               <FaClipboardList size={24} />
             </div>
-            <h3>Tổng số đơn hàng</h3>
+            <h3>Total orders</h3>
             <p>{stats.totalOrders}</p>
           </div>
           <div className={classes.statCard}>
             <div className={classes.statIcon}>
               <FaDollarSign size={24} />
             </div>
-            <h3>Tổng doanh thu</h3>
+            <h3>Total revenue</h3>
             <p>${stats.totalRevenue.toLocaleString()}</p>
           </div>
         </div>
         <div className={classes.recentOrders}>
-          <h2><FaClipboardList className={classes.sectionIcon} />Đơn hàng gần đây</h2>
+          <h2><FaClipboardList className={classes.sectionIcon} />Recent Orders</h2>
           <table>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Khách hàng</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
-                <th>Chi tiết</th>
+                <th>Customer</th>
+                <th>Total price</th>
+                <th>Status</th>
+                <th>Detail</th>
               </tr>
             </thead>
             <tbody>
