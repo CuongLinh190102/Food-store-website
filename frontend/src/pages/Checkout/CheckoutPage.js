@@ -92,7 +92,7 @@ export default function CheckoutPage() {
               error={errors.name}
             />
             <Input
-              defaultValue={user.address}
+              defaultValue={""}
               label="Address"
               {...register('address')}
               error={errors.address}
