@@ -107,7 +107,7 @@ export default function Dashboard() {
                   <td>${order.totalPrice}</td>
                   <td>{order.status}</td>
                   <td>
-                    <button onClick={() => handleViewOrder(order._id)}>Xem</button>
+                    <button onClick={() => handleViewOrder(order._id)}>See</button>
                   </td>
                 </tr>
               ))}

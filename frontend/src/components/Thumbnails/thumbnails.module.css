@@ -18,6 +18,12 @@
   overflow: hidden;
   color: #e72929;
   background-color: white;
+  transition: transform 0.3 ease;
+}
+
+.list li a:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .image {
