@@ -70,11 +70,21 @@ export default function CheckoutPage() {
   }, [watch]);
 
   const submit = async data => {
+    if(!order.addressLatLng) {
+      toast.error('Please select a valid location on the map!');
+      return;
+    }
+
+    if(data.address === '' || data.address === 'Address cannot be determined') {
+      toast.error('Please enter a valid address!');
+      return;
+    }
+
     await createOrder({ 
       ...order, 
       name: data.name, 
       address: data.address,
-      addressLatLng: order.addressLatLng || { lat: '', lng: '' },
+      addressLatLng: order.addressLatLng,
     });
     toast.success('Order created successfully!');
     setTimeout(() => navigate('/payment'), 200);

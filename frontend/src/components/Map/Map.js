@@ -131,9 +131,9 @@ async function reverseGeocode(latlng) {
     );
     const data = await response.json();
     
-    return data.display_name || "Không thể xác định địa chỉ";
+    return data.display_name || "Address cannot be determined";
   } catch (error) {
     console.error("Reverse geocoding error:", error);
-    return "Không thể lấy địa chỉ";
+    return "Unable to get address";
   }
 }
