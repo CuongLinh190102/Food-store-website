@@ -19,11 +19,13 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          cache-dependency-path: 'backend/package-lock.json'
+          cache-dependency-path: |
+            backend/package-lock.json
+            package-lock.json
 
       - name: Install backend dependencies
         run: npm install
         working-directory: './backend'
 
       - name: Run tests
-        run: npm run test -- --watchAll=false
+        run: npm test -- --watchAll=false
