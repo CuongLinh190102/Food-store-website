@@ -82,6 +82,7 @@ export const notifyReviewUpdate = async (reviewId, action) => {
         });
         return;
       }
+      
     } else {
       review = await ReviewModel.findById(reviewId).populate('userId', 'name avatar');
       if (!review) return;
@@ -93,6 +94,7 @@ export const notifyReviewUpdate = async (reviewId, action) => {
     const data = {
       foodId,
       avgStars,
+      reviewId: reviewId._id,
       review: review?.toObject?.(),
       action
     };
