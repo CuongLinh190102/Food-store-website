@@ -90,6 +90,17 @@ export default function RegisterPage() {
             error={errors.address}
           />
 
+          <Input
+            type="text"
+            label="Phone Number"
+            {...register('phone', {
+              required: true,
+              minLength: 10,
+              maxLength: 15,
+            })}
+            error={errors.phone}
+          />
+
           <Button type="submit" text="Register" />
 
           <div className={classes.login}>
