@@ -2,11 +2,9 @@ name: React CI Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   ci:
@@ -20,9 +18,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'backend/package-lock.json'
 
-      - name: Install dependencies
+      - name: Install backend dependencies
         run: npm install
+        working-directory: './backend'
 
       - name: Run tests
         run: npm run test -- --watchAll=false
