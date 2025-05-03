@@ -5,6 +5,8 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import { useAuth } from '../../hooks/useAuth';
 
+
+// Component đổi mật khẩu
 export default function ChangePassword() {
   const {
     handleSubmit,

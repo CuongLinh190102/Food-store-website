@@ -43,7 +43,6 @@ async function seedUsers() {
   console.log('Users seed is done!');
 }
 
-// Hàm thêm dữ liệu mẫu cho bảng Foods
 async function seedFoods() {
   const foods = await FoodModel.countDocuments();
   if (foods > 0) {

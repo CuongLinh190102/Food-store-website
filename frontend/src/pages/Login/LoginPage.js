@@ -8,6 +8,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { EMAIL } from '../../constants/patterns';
 export default function LoginPage() {
+  // Sử dụng react-hook-form để xử lý form
   const {
     handleSubmit,
     register,
@@ -18,13 +19,13 @@ export default function LoginPage() {
   const { user, login } = useAuth();
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
-
+// Nếu đã đăng nhập, điều hướng đến returnUrl hoặc trang chủ
   useEffect(() => {
     if (!user) return;
 
     returnUrl ? navigate(returnUrl) : navigate('/');
   }, [user]);
-
+// Gửi form để đăng nhập
   const submit = async ({ email, password }) => {
     await login(email, password);
   };

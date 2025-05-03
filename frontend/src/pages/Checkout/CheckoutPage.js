@@ -12,6 +12,7 @@ import Button from '../../components/Button/Button';
 import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
 import Map, { forwardGeocode } from '../../components/Map/Map';
 
+//Component này được sử dụng để hiển thị trang thanh toán
 export default function CheckoutPage() {
   const { cart } = useCart();
   const { user } = useAuth();

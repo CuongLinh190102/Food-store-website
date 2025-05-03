@@ -4,6 +4,7 @@ import { useCart } from '../../hooks/useCart';
 import classes from './header.module.css';
 import { useAuth } from '../../hooks/useAuth';
 
+//Header
 export default function Header() {
   const { user, logout } = useAuth();
   const { cart } = useCart();

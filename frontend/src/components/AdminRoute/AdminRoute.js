@@ -3,6 +3,8 @@ import { useAuth } from '../../hooks/useAuth';
 import NotFound from '../NotFound/NotFound';
 import AuthRoute from '../AuthRoute/AuthRoute';
 
+// Bảo vệ route admin, chỉ cho phép admin truy cập
+// Nếu không phải admin, chuyển hướng về trang NotFound với thông báo lỗi
 function AdminRoute({ children }) {
   const { user } = useAuth();
   return user.isAdmin ? (

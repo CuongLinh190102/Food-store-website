@@ -10,6 +10,7 @@ import { useCart } from '../../hooks/useCart';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
+// Component này được sử dụng để hiển thị nút thanh toán PayPal
 export default function PaypalButtons({ order }) {
   return (
     <PayPalScriptProvider

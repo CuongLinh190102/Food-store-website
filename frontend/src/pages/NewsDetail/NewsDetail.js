@@ -6,7 +6,7 @@ import { getRecipeById } from '../../services/recipeService';
 function NewsDetail() {
     const { id } = useParams();
     const [recipe, setRecipe] = useState(null);
-
+ // Khi component được render lần đầu hoặc id thay đổi, gọi API lấy chi tiết công thức
     useEffect(() => {
         async function fetchRecipeDetail() {
             try {

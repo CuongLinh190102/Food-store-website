@@ -33,7 +33,7 @@ export default function UserEditPage() {
       setAvatarUrl(user.avatar);
     });
   }, [userId, reset, isEditMode]);
-
+// Xử lý upload ảnh đại diện
   const upload = async (event) => {
     setIsUploading(true);
     try {
@@ -44,7 +44,7 @@ export default function UserEditPage() {
       setIsUploading(false);
     }
   };
-
+// Hàm xử lý khi submit form
   const submit = async (userData) => {
     try {
       const user = { 

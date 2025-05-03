@@ -14,7 +14,7 @@ import classes from './HomePage.module.css';
 import HowItWorks from './HowItWork';
 
 const initialState = { foods: [], tags: [] };
-
+// Reducer để cập nhật state theo action
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FOODS_LOADED':

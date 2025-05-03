@@ -2,7 +2,7 @@ import { useState, createContext, useContext } from 'react';
 import * as userService from '../services/userService';
 import { toast } from 'react-toastify';
 
-const AuthContext = createContext(null);
+const AuthContext = createContext(null); // Context để xác định người dùng đã đăng nhập hay chưa
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(userService.getUser());

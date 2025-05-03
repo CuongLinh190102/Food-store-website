@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// interceptor này được sử dụng để hiển thị và ẩn các chỉ báo tải trong khi yêu cầu API.
 export const setLoadingInterceptor = ({ showLoading, hideLoading }) => {
   axios.interceptors.request.use(
     req => {

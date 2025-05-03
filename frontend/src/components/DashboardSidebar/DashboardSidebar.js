@@ -1,10 +1,10 @@
-// DashboardSideBar.js
 import React, { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import classes from './DashboardSidebar.module.css';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
+// Component này được sử dụng để hiển thị thanh bên trong bảng điều khiển
 export default function DashboardSideBar() {
   const { user } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

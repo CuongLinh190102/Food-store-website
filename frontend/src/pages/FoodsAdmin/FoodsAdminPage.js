@@ -12,11 +12,11 @@ import DashboardSideBar from '../../components/DashboardSidebar/DashboardSidebar
 export default function FoodsAdminPage() {
   const [foods, setFoods] = useState();
   const { searchTerm } = useParams();
-
+// Tải danh sách món ăn khi từ khóa thay đổi
   useEffect(() => {
     loadFoods();
   }, [searchTerm]);
-
+// Lấy tất cả món ăn hoặc tìm kiếm theo từ khóa
   const loadFoods = async () => {
     const foods = searchTerm ? await search(searchTerm) : await getAll();
     setFoods(foods);
@@ -31,7 +31,7 @@ export default function FoodsAdminPage() {
       <NotFound linkRoute="/dashboard" linkText="Back to dashboard!" />
     );
   };
-
+// Xóa món ăn sau khi xác nhận
   const deleteFood = async food => {
     const confirmed = window.confirm(`Delete Food ${food.name}?`);
     if (!confirmed) return;

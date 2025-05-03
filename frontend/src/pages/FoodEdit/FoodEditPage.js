@@ -19,14 +19,14 @@ export default function FoodEditPage() {
   const isEditMode = !!foodId;
 
   const navigate = useNavigate();
-
+ // Sử dụng react-hook-form để quản lý form
   const {
     handleSubmit,
     register,
     formState: { errors },
     reset,
   } = useForm();
-
+ // Khi vào chế độ chỉnh sửa, lấy thông tin món ăn từ server
   useEffect(() => {
     if (!isEditMode) return;
 

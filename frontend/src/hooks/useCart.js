@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+
+// Đây là một hook tùy chỉnh quản lý trạng thái giỏ hàng trong ứng dụng React.
 const CartContext = createContext(null);
 const CART_KEY = 'cart';
 const EMPTY_CART = {

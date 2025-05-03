@@ -5,6 +5,7 @@ function Input(
   { label, type, defaultValue, onChange, onBlur, name, error },
   ref
 ) {
+  // Input component sử dụng để nhập liệu với các thuộc tính tùy chỉnh
   const getErrorMessage = () => {
     if (!error) return;
     if (error.message) return error.message;

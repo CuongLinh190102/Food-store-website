@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Price from '../Price/Price';
 import classes from './orderItemsList.module.css';
 
+// Component này được sử dụng để hiển thị danh sách các món ăn trong đơn hàng
 export default function OrderItemsList({ order }) {
   return (
     <table className={classes.table}>

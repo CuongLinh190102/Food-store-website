@@ -108,6 +108,7 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
   );
 }
 
+// Hàm đổi tên địa chỉ thành latlng
 export async function forwardGeocode(address) {
   try{
     const response = await fetch(
@@ -121,6 +122,7 @@ export async function forwardGeocode(address) {
   }
 }
 
+// Hàm đổi latlng thành địa chỉ
 async function reverseGeocode(latlng) {
   try {
     const { lat, lng } = latlng;
@@ -129,7 +131,6 @@ async function reverseGeocode(latlng) {
     );
     const data = await response.json();
     
-    // Trả về địa chỉ dạng text
     return data.display_name || "Không thể xác định địa chỉ";
   } catch (error) {
     console.error("Reverse geocoding error:", error);

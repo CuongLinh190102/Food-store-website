@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//Đặt URL cơ sở cho các yêu cầu axios
 axios.interceptors.request.use(
   req => {
     const user = localStorage.getItem('user');

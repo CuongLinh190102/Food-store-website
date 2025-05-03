@@ -1,6 +1,7 @@
 import React from 'react';
 import './QuantitySelector.css';
 
+// Chọn số lượng bằng cách nhấp vào nút "+" và "-"
 export default function QuantitySelector({ value, onChange }) {
   const handleDecrease = () => onChange(Math.max(1, value - 1));
   const handleIncrease = () => onChange(value + 1);

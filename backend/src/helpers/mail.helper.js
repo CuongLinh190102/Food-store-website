@@ -1,15 +1,14 @@
 import { getClient } from '../config/mail.config.js';
 
-// Hàm gửi email xác nhận đơn hàng
 export const sendEmailReceipt = async function (order) {
   const mailClient = getClient(); 
 
   try {
     const { data, error } = await mailClient.emails.send({
-      from: 'Food Delivery <onboarding@resend.dev>', // Hoặc domain bạn xác minh
+      from: 'Food Delivery <onboarding@resend.dev>',
       to: [order.user.email],
       subject: `Order ${order.id} is being processed`,
-      html: getReceiptHtml(order), // GIỮ NGUYÊN NỘI DUNG
+      html: getReceiptHtml(order),
     });
 
     if (error) {

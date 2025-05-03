@@ -1,5 +1,7 @@
 import classes from './button.module.css';
 
+
+/// Đây là component dùng để hiển thị nút bấm với các thuộc tính tùy chỉnh
 export default function Button({
   type,
   text,

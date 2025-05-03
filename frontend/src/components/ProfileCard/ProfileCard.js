@@ -1,5 +1,6 @@
 import classes from './ProfileCard.module.css';
 
+// Profile cho trang Contact
 function ProfileCard( 
     { imageUrl, name, bio }
 ) {

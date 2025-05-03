@@ -9,6 +9,7 @@ import QuantitySelector from '../../components/QuantitySelector/QuantitySelector
 
 export default function CartPage() {
   const { cart, removeFromCart, changeQuantity } = useCart();
+  // Lấy dữ liệu giỏ hàng và các hàm xử lý từ useCart
   return (
     <>
       <Title title="Your Shopping Cart" fontSize="1.8rem" margin="1.5rem 0 0 2.5rem" />

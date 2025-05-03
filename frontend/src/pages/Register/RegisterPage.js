@@ -15,19 +15,19 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
-
+// Nếu đã đăng nhập, tự động điều hướng người dùng
   useEffect(() => {
     if (!user) return;
     returnUrl ? navigate(returnUrl) : navigate('/');
   }, [user]);
-
+// Sử dụng useForm từ react-hook-form để xử lý form và validation
   const {
     handleSubmit,
     register,
     getValues,
     formState: { errors },
   } = useForm();
-
+ // Hàm gọi khi form submit hợp lệ
   const submit = async data => {
     await auth.register(data);
   };

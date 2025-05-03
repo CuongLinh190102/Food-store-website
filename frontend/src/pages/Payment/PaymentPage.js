@@ -10,7 +10,7 @@ export default function PaymentPage() {
   const [order, setOrder] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null)
-
+  // useEffect để gọi API lấy đơn hàng mới nhất của người dùng khi component render lần đầu
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -34,7 +34,7 @@ export default function PaymentPage() {
   if (!order) return <div>No active order found</div>;
 
   if (!order) return;
-
+ // Giao diện trang thanh toán
   return (
     <>
       <div className={classes.container}>

@@ -11,16 +11,16 @@ export default function UsersPage() {
   const [users, setUsers] = useState();
   const { searchTerm } = useParams();
   const auth = useAuth();
-
+// Gọi API lấy danh sách user mỗi khi searchTerm thay đổi
   useEffect(() => {
     loadUsers();
   }, [searchTerm]);
-
+// Gọi API lấy tất cả user (hoặc theo từ khóa)
   const loadUsers = async () => {
     const users = await getAll(searchTerm);
     setUsers(users);
   };
-
+// Gọi API toggle trạng thái "bị khóa" của user
   const handleToggleBlock = async userId => {
     const isBlocked = await toggleBlock(userId);
     setUsers(oldUsers =>

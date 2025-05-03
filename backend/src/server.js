@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
-dotenv.config(); // Tải biến môi trường từ tệp `.env`
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 import { initSocket } from './socket.js';
-
-// Import các router xử lý API
+import swaggerRoutes from './swagger.js';
+import { dbconnect } from './config/database.config.js';
+import path, { dirname } from 'path';
 import foodRouter from './routers/food.router.js';
 import userRouter from './routers/user.router.js';
 import orderRouter from './routers/order.router.js';
@@ -14,12 +14,9 @@ import uploadRouter from './routers/upload.router.js';
 import favoriteRouter from './routers/favorite.router.js';
 import recipeRouter from './routers/recipe.router.js';
 import reviewRouter from './routers/review.router.js';
-import swaggerRoutes from './swagger.js';
 
-// Kết nối cơ sở dữ liệu
-import { dbconnect } from './config/database.config.js';
-import path, { dirname } from 'path';
-dbconnect(); // Gọi hàm kết nối database
+dotenv.config();
+dbconnect();
 
 // Xác định đường dẫn thư mục hiện tại
 const __filename = fileURLToPath(import.meta.url);
@@ -28,10 +25,9 @@ const __dirname = dirname(__filename);
 const app = express();
 const server = createServer(app);
 
-// Middleware để parse dữ liệu JSON từ request body
 app.use(express.json());
 
-// Cấu hình CORS (Cross-Origin Resource Sharing)
+// Cấu hình CORS
 app.use(
   cors({
     origin: [
@@ -45,13 +41,13 @@ app.use(
 app.use(express.json());
 
 // Định nghĩa các route API
-app.use('/api/users', userRouter); // API quản lý người dùng
-app.use('/api/foods', foodRouter); // API quản lý thực phẩm
-app.use('/api/orders', orderRouter); // API quản lý đơn hàng
+app.use('/api/users', userRouter); 
+app.use('/api/foods', foodRouter); 
+app.use('/api/orders', orderRouter); 
 app.use('/api/upload', uploadRouter); // API xử lý upload file
-app.use('/api/favorites', favoriteRouter); // API quản lý món ăn yêu thích
+app.use('/api/favorites', favoriteRouter); 
 app.use('/api/recipes', recipeRouter); // API lấy dữ liệu từ Spoonacular
-app.use('/api/reviews', reviewRouter); // API quản lý đánh giá món ăn
+app.use('/api/reviews', reviewRouter); 
 
 // Cấu hình Swagger cho tài liệu API
 app.use(swaggerRoutes);

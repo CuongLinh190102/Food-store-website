@@ -4,9 +4,10 @@ import classes from './NewsPage.module.css';
 import { getAllRecipes } from '../../services/recipeService';
 
 function NewsPage() {
+     // State để lưu trữ danh sách các công thức
     const [recipes, setRecipes] = useState([]); 
     const navigate = useNavigate();
-
+// Hàm gọi API để lấy tất cả các công thức nấu ăn
     async function getRecipes() {
         try {
             let response = await getAllRecipes();
@@ -25,7 +26,7 @@ function NewsPage() {
             <h1>List of Recipes</h1>
             <div className={classes.recipe_list}>
                 {recipes.map((recipe) => (
-                    <div key={recipe.id} className={classes.card} onClick={() => navigate(`/news/${recipe.id}`)}>
+                    <div key={recipe.id} className={classes.card} onClick={() => navigate(`/news/${recipe.id}`)}> 
                         <img src={recipe.image} alt={recipe.title} />
                         <h2>{recipe.title}</h2>
                     </div>

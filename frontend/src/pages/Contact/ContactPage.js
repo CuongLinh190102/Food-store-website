@@ -1,6 +1,7 @@
 import classes from './ContactPage.module.css';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
+// Đây là trang liên hệ hiển thị các thành viên trong nhóm
 function ContactPage () {
   return (
     <div className={classes.container}>

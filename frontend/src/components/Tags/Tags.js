@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './tags.module.css';
 
+// Component này được sử dụng để hiển thị danh sách các thẻ (tags) của món ăn
 export default function Tags({ tags, forFoodPage }) {
   return (
     <div

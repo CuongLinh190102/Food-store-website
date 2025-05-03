@@ -8,6 +8,7 @@ Search.defaultProps = {
   placeholder: 'Search...',
 };
 
+// Thanh search
 export default function Search({
   searchRoute,
   defaultRoute,
