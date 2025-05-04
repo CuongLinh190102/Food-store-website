@@ -16,25 +16,30 @@ Tiến hành cài đặt các thư viện cần thiết cho cả frontend và ba
 ### Cài đặt frontend (React)
 
 ```bash
-cd client
+cd frontend
 npm install
 ```
 
 ### Cài đặt backend (Node.js + Express)
 
 ```bash
-cd ../server
+cd ../backend
 npm install
 ```
 
 ## Cấu hình biến môi trường
 
-Tạo một file `.env` trong thư mục `server/` với nội dung như sau:
+Tạo một file `.env` trong thư mục `backend/` với nội dung như sau:
 
 ```env
-PORT=5000
-MONGO_URL=mongodb://localhost:27017/foodstore
+MONGO_URI=
+PORT=
 JWT_SECRET=your_jwt_secret_key
+SPOONACULAR_API_KEY=
+RESEND_API_KEY=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 ```
 
 **Lưu ý**: Nếu bạn sử dụng MongoDB Atlas thay cho MongoDB local, hãy thay `MONGO_URL` bằng chuỗi kết nối từ Atlas.
@@ -43,13 +48,13 @@ JWT_SECRET=your_jwt_secret_key
 
 Mở hai terminal:
 
-- Tại thư mục `server/`, khởi chạy backend:
+- Tại thư mục `backend/`, khởi chạy backend:
 
   ```bash
   npm start
   ```
 
-- Tại thư mục `client/`, khởi chạy frontend:
+- Tại thư mục `frontend/`, khởi chạy frontend:
 
   ```bash
   npm start
@@ -80,8 +85,8 @@ Bạn có thể đăng ký tài khoản mới trên giao diện frontend. Nếu 
 ```
 Food-store-website/
 |
-├── client/         # Source code giao diện người dùng (React)
-├── server/         # Source code backend API (Node.js + Express + MongoDB)
+├── frontend/         # Source code giao diện người dùng (React)
+├── backend/         # Source code backend API (Node.js + Express + MongoDB)
 └── README.md       # File tài liệu dự án
 ```
 

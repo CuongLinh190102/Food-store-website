@@ -435,6 +435,7 @@ const generateTokenResponse = user => {
     name: user.name,
     address: user.address,
     isAdmin: user.isAdmin,
+    isBlocked: user.isBlocked,
     phone: user.phone,
     avatar: user.avatar,
     token,

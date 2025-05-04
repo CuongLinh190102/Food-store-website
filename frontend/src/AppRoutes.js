@@ -20,6 +20,7 @@ import UserEditPage from './pages/UserEdit/UserEditPage';
 import NewsPage from './pages/News/NewsPage';
 import NewsDetail from './pages/NewsDetail/NewsDetail';
 import ContactPage from './pages/Contact/ContactPage';
+import NotFound from './components/NotFound/NotFound';
 
 export default function AppRoutes() {
   return (
@@ -123,6 +124,11 @@ export default function AppRoutes() {
             <UserEditPage />
           </AdminRoute>
         }
+      />
+
+      <Route
+        path="*"
+        element={<NotFound />}
       />
       
     </Routes>
