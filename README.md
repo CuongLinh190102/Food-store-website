@@ -91,3 +91,6 @@ Food-store-website/
 ```
 
 --- 
+
+## Tài liệu API (test local)
+Truy cập: http://localhost:5000/api-docs
