@@ -17,7 +17,9 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: `http://localhost:${process.env.PORT || 5000}`,
+                url: process.env.NODE_ENV === 'production'
+                    ? 'https://food-store-website-production.up.railway.app'
+                    : `http://localhost:${process.env.PORT || 5000}`,
             },
         ],
         components: {
